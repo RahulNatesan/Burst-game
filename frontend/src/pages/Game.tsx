@@ -1,6 +1,6 @@
 import React, { useEffect, useState, useRef } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
-import { AnimatePresence } from 'framer-motion';
+import { AnimatePresence, motion } from 'framer-motion';
 import { useGameStore, type CardData } from '../store/gameStore';
 
 const getValidPlays = (hand: CardData[], leadSuit: string | null): CardData[] => {
