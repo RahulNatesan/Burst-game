@@ -9,6 +9,7 @@ interface HandProps {
   active: boolean;
   onPlayCard: (card: CardData) => void;
   layout?: 'horizontal' | 'vertical';
+  cardSize?: 'sm' | 'md' | 'lg';
 }
 
 export const Hand: React.FC<HandProps> = ({
@@ -17,6 +18,7 @@ export const Hand: React.FC<HandProps> = ({
   active,
   onPlayCard,
   layout = 'horizontal',
+  cardSize,
 }) => {
   const [shakingCardCode, setShakingCardCode] = useState<string | null>(null);
   const [isMobile, setIsMobile] = useState(window.innerWidth < 768);
@@ -47,7 +49,7 @@ export const Hand: React.FC<HandProps> = ({
   const isVertical = layout === 'vertical';
   const overlap = isMobile ? '-24px' : '-28px';
   const overlapY = '-56px';
-  const cardSize = isVertical ? 'md' : 'lg';
+  const finalCardSize = cardSize || (isVertical ? 'md' : 'lg');
 
   return (
     <div 
@@ -96,7 +98,7 @@ export const Hand: React.FC<HandProps> = ({
             >
               <Card
                 card={card}
-                size={cardSize}
+                size={finalCardSize}
                 layout={layout}
                 disabled={active && !isValid}
                 onClick={() => handleCardClick(card)}

@@ -11,6 +11,7 @@ interface PlayerAvatarProps {
   isHost?: boolean;
   onKick?: () => void;
   showKickButton?: boolean;
+  compact?: boolean; // Enable smaller avatar layouts for crowded tables
 }
 
 export const PlayerAvatar: React.FC<PlayerAvatarProps> = ({
@@ -22,10 +23,11 @@ export const PlayerAvatar: React.FC<PlayerAvatarProps> = ({
   ready = false,
   onKick,
   showKickButton = false,
+  compact = false,
 }) => {
   // Responsive SVG circular countdown properties
   const isMobileSize = typeof window !== 'undefined' ? window.innerWidth < 768 : false;
-  const containerSize = isMobileSize ? 48 : 56;
+  const containerSize = isMobileSize ? 48 : (compact ? 46 : 56);
   const cx = containerSize / 2;
   const cy = containerSize / 2;
   const stroke = 3;
@@ -37,9 +39,12 @@ export const PlayerAvatar: React.FC<PlayerAvatarProps> = ({
   // Blue at start, crimson when under 35% time remaining
   const timerColor = timeLeft > 35 ? '#3B82F6' : '#EF4444';
 
+  const containerWidthClass = compact ? 'w-18 md:w-20' : 'w-22 md:w-24';
+  const imgSizeClass = compact ? 'w-8 h-8 md:w-10 md:h-10' : 'w-10 h-10 md:w-12 md:h-12';
+
   return (
     <div className={`
-      flex flex-col items-center relative select-none bg-[#141416]/95 border rounded-2xl p-2 md:p-2.5 shadow-[0_8px_24px_rgba(0,0,0,0.6)] w-22 md:w-24 transition-all duration-300
+      flex flex-col items-center relative select-none bg-[#141416]/95 border rounded-2xl p-2 md:p-2.5 shadow-[0_8px_24px_rgba(0,0,0,0.6)] ${containerWidthClass} transition-all duration-300
       ${isActive ? 'border-electricBlue/50 shadow-[0_0_15px_rgba(59,130,246,0.25)]' : 'border-white/10 hover:border-white/20'}
     `}>
       {/* Circle Container */}
@@ -85,7 +90,7 @@ export const PlayerAvatar: React.FC<PlayerAvatarProps> = ({
 
         {/* User Avatar Image or Initials */}
         <div className={`
-          w-10 h-10 md:w-12 md:h-12 rounded-full overflow-hidden bg-charcoal border border-outline-variant/10 z-0 flex items-center justify-center relative
+          ${imgSizeClass} rounded-full overflow-hidden bg-charcoal border border-outline-variant/10 z-0 flex items-center justify-center relative
           ${isActive ? 'player-active-ring' : ''}
         `}>
           {player.avatar_url ? (

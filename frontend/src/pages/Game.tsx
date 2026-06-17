@@ -174,7 +174,6 @@ export const Game: React.FC = () => {
   const isMyBiddingTurn = game.phase === 'BIDDING' && game.active_player_id === playerId && biddingDelayTimeLeft <= 0;
   const isMyPlayTurn = game.phase === 'PLAYING' && game.active_player_id === playerId;
   const isInspectionActive = game.phase === 'BIDDING' && biddingDelayTimeLeft > 0;
-  const showHandAtBottom = isMobile || game.phase === 'BIDDING';
 
   // Seating configuration clockwise around the circular table starting from client player at index 0
   const N = game.players.length;
@@ -311,6 +310,7 @@ export const Game: React.FC = () => {
                   isActive={isPlayerActive}
                   isBiddingStarter={isBiddingStarter}
                   timeLeft={isPlayerActive ? timeLeft : 100}
+                  compact={N > 5}
                 />
               </div>
             );
@@ -361,30 +361,37 @@ export const Game: React.FC = () => {
       )}
 
       {/* Hand Cards Panel at bottom */}
-      <footer className={`w-full z-30 relative shrink-0 flex flex-col items-center justify-end bg-gradient-to-t from-[#0e0e0f] to-transparent pb-4 transition-all duration-300 ${
-        showHandAtBottom ? 'h-52 md:h-60' : 'h-16'
-      }`}>
-        {/* Status prompt alert */}
-        <div className={`absolute top-0 transform -translate-y-8 font-mono text-[10px] md:text-xs text-on-surface-variant bg-[#131315]/85 border border-outline-variant/20 rounded-full px-4 py-1 animate-pulse z-30 ${
-          !showHandAtBottom ? 'translate-y-[-4px]' : ''
-        }`}>
-          {game.phase === 'BIDDING' && biddingDelayTimeLeft > 0 && "Inspect your cards. Bidding countdown active."}
-          {isMyBiddingTurn && "Place your trick forecast bid."}
-          {isMyPlayTurn && "Your turn. Play a card following lead suit if possible."}
-          {!isMyBiddingTurn && !isMyPlayTurn && game.phase === 'BIDDING' && biddingDelayTimeLeft <= 0 && activePlayer && `Waiting for ${activePlayer.name} to bid...`}
-          {!isMyBiddingTurn && !isMyPlayTurn && game.phase === 'PLAYING' && activePlayer && `Waiting for ${activePlayer.name}...`}
-        </div>
+      {(() => {
+        const cardSize = isMobile ? 'sm' : window.innerHeight < 750 ? 'md' : 'lg';
+        const footerHeightClass = cardSize === 'sm'
+          ? 'h-28'
+          : cardSize === 'md'
+            ? 'h-38 md:h-42'
+            : 'h-52 md:h-60';
 
-        {showHandAtBottom && myPlayer && (
-          <Hand
-            hand={myPlayer.hand}
-            validPlays={isMyPlayTurn && game.current_trick ? getValidPlays(myPlayer.hand, game.current_trick.lead_suit) : []}
-            active={isMyPlayTurn}
-            onPlayCard={handlePlayCard}
-            layout="horizontal"
-          />
-        )}
-      </footer>
+        return (
+          <footer className={`w-full z-50 relative shrink-0 flex flex-col items-center justify-end md:pr-[320px] xl:pr-[400px] bg-gradient-to-t from-[#0e0e0f] to-transparent pb-4 ${footerHeightClass}`}>
+            {/* Status prompt alert */}
+            <div className="absolute top-0 transform -translate-y-8 font-mono text-[10px] md:text-xs text-on-surface-variant bg-[#131315]/85 border border-outline-variant/20 rounded-full px-4 py-1 animate-pulse z-30">
+              {game.phase === 'BIDDING' && biddingDelayTimeLeft > 0 && "Inspect your cards. Bidding countdown active."}
+              {isMyBiddingTurn && "Place your trick forecast bid."}
+              {isMyPlayTurn && "Your turn. Play a card following lead suit if possible."}
+              {!isMyBiddingTurn && !isMyPlayTurn && game.phase === 'BIDDING' && biddingDelayTimeLeft <= 0 && activePlayer && `Waiting for ${activePlayer.name} to bid...`}
+              {!isMyBiddingTurn && !isMyPlayTurn && game.phase === 'PLAYING' && activePlayer && `Waiting for ${activePlayer.name}...`}
+            </div>
+
+            {myPlayer && (
+              <Hand
+                hand={myPlayer.hand}
+                validPlays={isMyPlayTurn && game.current_trick ? getValidPlays(myPlayer.hand, game.current_trick.lead_suit) : []}
+                active={isMyPlayTurn}
+                onPlayCard={handlePlayCard}
+                cardSize={cardSize}
+              />
+            )}
+          </footer>
+        );
+      })()}
 
       {/* Overlays / Modals */}
       <AnimatePresence>
