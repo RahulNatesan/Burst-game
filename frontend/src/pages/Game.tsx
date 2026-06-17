@@ -179,9 +179,17 @@ export const Game: React.FC = () => {
   const N = game.players.length;
   const clientIdx = game.players.findIndex((p) => p.id === playerId);
 
-  const calculatedRadius = isMobile
+  // Seating calculations: use an ellipse (oval) to spread players horizontally on widescreen displays
+  const xRadius = isMobile
     ? Math.min(window.innerWidth * 0.32, 110)
-    : Math.max(125, Math.min(window.innerHeight * 0.23, window.innerWidth * 0.16, 210));
+    : Math.max(140, Math.min(window.innerHeight * 0.28, window.innerWidth * 0.22, 260));
+
+  const yRadius = isMobile
+    ? Math.min(window.innerWidth * 0.32, 110)
+    : Math.max(110, Math.min(window.innerHeight * 0.18, window.innerWidth * 0.13, 160));
+
+  // The base reference table radius (used to size the central TrickArea relative to vertical space)
+  const calculatedRadius = yRadius;
 
   const handleSendChat = (e: React.FormEvent) => {
     e.preventDefault();
@@ -282,8 +290,8 @@ export const Game: React.FC = () => {
             const seat = (idx - clientIdx + N) % N;
             
             const angle = (Math.PI / 2) + (2 * Math.PI * seat / N);
-            const x = Math.cos(angle) * calculatedRadius;
-            const y = Math.sin(angle) * calculatedRadius;
+            const x = Math.cos(angle) * xRadius;
+            const y = Math.sin(angle) * yRadius;
             
             const isPlayerActive = game.active_player_id === p.id;
             const isBiddingStarter = game.bidding_starter_id === p.id;
@@ -304,6 +312,7 @@ export const Game: React.FC = () => {
                   isActive={isPlayerActive}
                   isBiddingStarter={isBiddingStarter}
                   timeLeft={isPlayerActive ? timeLeft : 100}
+                  compact={N > 5}
                 />
               </div>
             );

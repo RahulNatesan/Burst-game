@@ -28,7 +28,7 @@ export const TrickArea: React.FC<TrickAreaProps> = ({
         width: `${tableRadius * 1.05}px`,
         height: `${tableRadius * 1.05}px`,
       }}
-      className="absolute rounded-full border border-white/5 bg-[#171719]/35 backdrop-blur-md flex items-center justify-center top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 z-20 transition-all duration-300"
+      className="absolute rounded-full border border-white/5 bg-[#171719]/10 flex items-center justify-center top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 z-20 transition-all duration-300"
     >
       
       {/* Visual felt marker / trump accent center indicator */}

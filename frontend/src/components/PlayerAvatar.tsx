@@ -11,6 +11,7 @@ interface PlayerAvatarProps {
   isHost?: boolean;
   onKick?: () => void;
   showKickButton?: boolean;
+  compact?: boolean; // Enable smaller avatar layouts for crowded tables
 }
 
 export const PlayerAvatar: React.FC<PlayerAvatarProps> = ({
@@ -22,10 +23,11 @@ export const PlayerAvatar: React.FC<PlayerAvatarProps> = ({
   ready = false,
   onKick,
   showKickButton = false,
+  compact = false,
 }) => {
   // SVG circular countdown properties
-  const radius = 42;
-  const stroke = 3;
+  const radius = compact ? 31 : 42;
+  const stroke = compact ? 2.5 : 3;
   const normalizedRadius = radius - stroke * 2;
   const circumference = normalizedRadius * 2 * Math.PI;
   const strokeDashoffset = circumference - (timeLeft / 100) * circumference;
@@ -33,21 +35,24 @@ export const PlayerAvatar: React.FC<PlayerAvatarProps> = ({
   // Blue at start, crimson when under 35% time remaining
   const timerColor = timeLeft > 35 ? '#3B82F6' : '#EF4444';
 
+  const circleSizeClass = compact ? 'w-18 h-18' : 'w-24 h-24';
+  const imgSizeClass = compact ? 'w-14 h-14' : 'w-20 h-20';
+
   return (
     <div className="flex flex-col items-center relative select-none">
       {/* Circle Container */}
-      <div className="relative w-24 h-24 flex items-center justify-center">
+      <div className={`relative ${circleSizeClass} flex items-center justify-center`}>
         
         {/* Time Remaining Ring (active turn) */}
         {isActive && !isLobby && (
-          <svg className="absolute w-24 h-24 -rotate-90 pointer-events-none z-10">
+          <svg className={`absolute -rotate-90 pointer-events-none z-10 ${compact ? 'w-18 h-18' : 'w-24 h-24'}`}>
             <circle
               stroke="rgba(0,0,0,0.3)"
               fill="transparent"
               strokeWidth={stroke}
               r={normalizedRadius}
-              cx={48}
-              cy={48}
+              cx={compact ? 36 : 48}
+              cy={compact ? 36 : 48}
             />
             <circle
               stroke={timerColor}
@@ -56,8 +61,8 @@ export const PlayerAvatar: React.FC<PlayerAvatarProps> = ({
               strokeDasharray={circumference + ' ' + circumference}
               style={{ strokeDashoffset, transition: 'stroke-dashoffset 0.1s linear, stroke 0.3s' }}
               r={normalizedRadius}
-              cx={48}
-              cy={48}
+              cx={compact ? 36 : 48}
+              cy={compact ? 36 : 48}
             />
           </svg>
         )}
@@ -65,14 +70,14 @@ export const PlayerAvatar: React.FC<PlayerAvatarProps> = ({
         {/* Regular Border Frame */}
         {!isActive && (
           <div className={`
-            absolute inset-1.5 rounded-full border z-10 pointer-events-none
+            absolute inset-1 rounded-full border z-10 pointer-events-none
             ${isLobby && ready ? 'border-emerald-500/50' : 'border-outline-variant/30'}
           `} />
         )}
 
         {/* User Avatar Image or Initials */}
         <div className={`
-          w-20 h-20 rounded-full overflow-hidden bg-charcoal border border-outline-variant/10 z-0 flex items-center justify-center relative
+          ${imgSizeClass} rounded-full overflow-hidden bg-charcoal border border-outline-variant/10 z-0 flex items-center justify-center relative
           ${isActive ? 'player-active-ring' : ''}
         `}>
           {player.avatar_url ? (
@@ -85,14 +90,16 @@ export const PlayerAvatar: React.FC<PlayerAvatarProps> = ({
               }}
             />
           ) : (
-            <div className="font-semibold text-lg text-primary uppercase font-mono">
-              {player.name.substring(0, 2)}
+            <div className={`font-semibold text-primary uppercase font-mono ${compact ? 'text-sm' : 'text-lg'}`}>
+              {player.name ? player.name.substring(0, 2) : '??'}
             </div>
           )}
 
           {/* Disconnection mask */}
           {!player.is_connected && !player.is_bot && (
-            <div className="absolute inset-0 bg-black/70 backdrop-blur-[1px] flex items-center justify-center z-10 text-[9px] text-red-500 font-bold tracking-wider font-mono">
+            <div className={`absolute inset-0 bg-black/70 backdrop-blur-[1px] flex items-center justify-center z-10 text-red-500 font-bold tracking-wider font-mono ${
+              compact ? 'text-[7.5px]' : 'text-[9px]'
+            }`}>
               OFFLINE
             </div>
           )}
@@ -113,7 +120,9 @@ export const PlayerAvatar: React.FC<PlayerAvatarProps> = ({
 
         {/* Dealer / Bidding starter star */}
         {isBiddingStarter && !isLobby && (
-          <div className="absolute top-1 right-1 bg-amber-500 text-obsidian border border-amber-300 w-5 h-5 rounded-full flex items-center justify-center font-bold text-[10px] shadow-md z-20" title="Bidding Starter">
+          <div className={`absolute top-0.5 right-0.5 bg-amber-500 text-obsidian border border-amber-300 rounded-full flex items-center justify-center font-bold shadow-md z-20 ${
+            compact ? 'w-4 h-4 text-[8px]' : 'w-5 h-5 text-[10px]'
+          }`} title="Bidding Starter">
             ★
           </div>
         )}
@@ -122,7 +131,7 @@ export const PlayerAvatar: React.FC<PlayerAvatarProps> = ({
         {showKickButton && onKick && (
           <button 
             onClick={(e) => { e.stopPropagation(); onKick(); }}
-            className="absolute top-1 left-1 bg-red-600 border border-red-400 hover:bg-red-500 w-5 h-5 rounded-full flex items-center justify-center text-white text-[10px] shadow-md z-30 transition-all font-bold"
+            className="absolute top-0.5 left-0.5 bg-red-600 border border-red-400 hover:bg-red-500 w-4 h-4 rounded-full flex items-center justify-center text-white text-[10px] shadow-md z-30 transition-all font-bold"
             title="Kick Bot"
           >
             ×
@@ -131,13 +140,17 @@ export const PlayerAvatar: React.FC<PlayerAvatarProps> = ({
       </div>
 
       {/* Label Box */}
-      <div className="mt-2.5 text-center flex flex-col items-center">
-        <div className="flex items-center gap-1.5">
-          <span className="font-bold text-sm md:text-base max-w-[120px] md:max-w-[140px] truncate text-on-surface">
+      <div className={`${compact ? 'mt-1' : 'mt-2.5'} text-center flex flex-col items-center`}>
+        <div className="flex items-center gap-1">
+          <span className={`font-bold max-w-[90px] md:max-w-[110px] truncate text-on-surface ${
+            compact ? 'text-xs md:text-sm' : 'text-sm md:text-base'
+          }`}>
             {player.name}
           </span>
           {player.is_bot && (
-            <span className="text-[8px] bg-zinc-800 border border-zinc-700 text-zinc-400 rounded px-1.5 py-0.5 font-mono uppercase font-bold tracking-wider scale-90">
+            <span className={`bg-zinc-800 border border-zinc-700 text-zinc-400 rounded font-mono uppercase font-bold tracking-wider scale-85 ${
+              compact ? 'text-[6px] px-1 py-0.1' : 'text-[8px] px-1.5 py-0.5'
+            }`}>
               AI
             </span>
           )}
@@ -145,15 +158,17 @@ export const PlayerAvatar: React.FC<PlayerAvatarProps> = ({
 
         {/* Stats indicators */}
         {!isLobby && (
-          <div className="flex items-center gap-2 mt-1.5 font-mono text-xs md:text-sm text-on-surface-variant">
+          <div className={`flex items-center gap-1.5 mt-0.5 font-mono text-on-surface-variant ${
+            compact ? 'text-[9.5px] md:text-[10.5px]' : 'text-xs md:text-sm'
+          }`}>
             <span className={`
-              px-2 py-0.5 rounded-md border font-bold
+              px-1.5 py-0.2 rounded font-bold
               ${player.bid !== null ? 'bg-electricBlue/10 border-electricBlue/30 text-electricBlue' : 'bg-zinc-800 border-zinc-700 text-zinc-500'}
             `}>
               Bid: {player.bid !== null ? player.bid : '—'}
             </span>
             <span className={`
-              px-2 py-0.5 rounded-md border font-bold
+              px-1.5 py-0.2 rounded font-bold
               ${player.tricks_won > 0 ? 'bg-amber-500/10 border-amber-500/30 text-amber-500' : 'bg-zinc-800 border-zinc-700 text-zinc-500'}
             `}>
               Won: {player.tricks_won}
