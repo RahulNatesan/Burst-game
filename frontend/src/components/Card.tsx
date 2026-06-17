@@ -9,6 +9,7 @@ interface CardProps {
   selected?: boolean;
   className?: string;
   size?: 'sm' | 'md' | 'lg';
+  layout?: 'horizontal' | 'vertical';
 }
 
 export const Card: React.FC<CardProps> = ({
@@ -18,6 +19,7 @@ export const Card: React.FC<CardProps> = ({
   selected = false,
   className = '',
   size = 'md',
+  layout = 'horizontal',
 }) => {
   const isHeart = card.suit === 'HEARTS';
   const isRed = card.color === 'red';
@@ -42,7 +44,7 @@ export const Card: React.FC<CardProps> = ({
 
   return (
     <motion.div
-      whileHover={!disabled && !selected ? { y: -12, scale: 1.03 } : {}}
+      whileHover={!disabled && !selected ? (layout === 'vertical' ? { x: 20, scale: 1.03 } : { y: -12, scale: 1.03 }) : {}}
       onClick={() => !disabled && onClick && onClick()}
       className={`
         relative select-none border flex flex-col justify-between card-shadow transition-all duration-300
