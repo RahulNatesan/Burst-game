@@ -8,6 +8,7 @@ interface HandProps {
   validPlays: CardData[];
   active: boolean;
   onPlayCard: (card: CardData) => void;
+  cardSize?: 'sm' | 'md' | 'lg';
 }
 
 export const Hand: React.FC<HandProps> = ({
@@ -15,6 +16,7 @@ export const Hand: React.FC<HandProps> = ({
   validPlays,
   active,
   onPlayCard,
+  cardSize = 'lg',
 }) => {
   const [shakingCardCode, setShakingCardCode] = useState<string | null>(null);
   const [isMobile, setIsMobile] = useState(window.innerWidth < 768);
@@ -42,10 +44,18 @@ export const Hand: React.FC<HandProps> = ({
     }
   };
 
-  const overlap = isMobile ? '-52px' : '-56px';
+  const overlap = cardSize === 'sm' 
+    ? '-32px' 
+    : cardSize === 'md' 
+      ? '-44px' 
+      : isMobile 
+        ? '-52px' 
+        : '-56px';
 
   return (
-    <div className="relative flex items-end justify-center w-full h-48 md:h-56 px-4 overflow-x-auto py-4 scrollbar-hide">
+    <div className={`relative flex items-end justify-center w-full px-4 overflow-x-auto py-2 scrollbar-hide ${
+      cardSize === 'sm' ? 'h-24 md:h-28' : cardSize === 'md' ? 'h-36 md:h-40' : 'h-48 md:h-56'
+    }`}>
       <div className="flex items-center justify-center min-w-max px-6">
         {hand.map((card, i) => {
           // Check validity
@@ -78,7 +88,7 @@ export const Hand: React.FC<HandProps> = ({
             >
               <Card
                 card={card}
-                size="lg"
+                size={cardSize}
                 disabled={active && !isValid}
                 onClick={() => handleCardClick(card)}
                 className="hover:z-50"

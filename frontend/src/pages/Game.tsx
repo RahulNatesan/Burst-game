@@ -276,17 +276,14 @@ export const Game: React.FC = () => {
           {game.players.map((p, idx) => {
             const seat = (idx - clientIdx + N) % N;
             
-            // Responsive polar seat layouts to prevent overlaps and scale with height
-            const radius = isMobile 
-              ? 110 
-              : window.innerHeight < 700 
-                ? 140 
-                : window.innerWidth < 1024 
-                  ? 180 
-                  : 220;
+            // Responsive polar seat layouts to prevent overlaps and scale with height and width
+            const calculatedRadius = isMobile
+              ? Math.min(window.innerWidth * 0.32, 110)
+              : Math.max(125, Math.min(window.innerHeight * 0.23, window.innerWidth * 0.16, 210));
+            
             const angle = (Math.PI / 2) + (2 * Math.PI * seat / N);
-            const x = Math.cos(angle) * radius;
-            const y = Math.sin(angle) * radius;
+            const x = Math.cos(angle) * calculatedRadius;
+            const y = Math.sin(angle) * calculatedRadius;
             
             const isPlayerActive = game.active_player_id === p.id;
             const isBiddingStarter = game.bidding_starter_id === p.id;
@@ -356,25 +353,37 @@ export const Game: React.FC = () => {
       </main>
 
       {/* Hand Cards Panel at bottom */}
-      <footer className="w-full h-52 md:h-60 z-30 relative shrink-0 flex flex-col items-center justify-end bg-gradient-to-t from-[#0e0e0f] to-transparent pb-4">
-        {/* Status prompt alert */}
-        <div className="absolute top-0 transform -translate-y-8 font-mono text-[10px] md:text-xs text-on-surface-variant bg-[#131315]/85 border border-outline-variant/20 rounded-full px-4 py-1 animate-pulse z-30">
-          {game.phase === 'BIDDING' && biddingDelayTimeLeft > 0 && "Inspect your cards. Bidding countdown active."}
-          {isMyBiddingTurn && "Place your trick forecast bid."}
-          {isMyPlayTurn && "Your turn. Play a card following lead suit if possible."}
-          {!isMyBiddingTurn && !isMyPlayTurn && game.phase === 'BIDDING' && biddingDelayTimeLeft <= 0 && activePlayer && `Waiting for ${activePlayer.name} to bid...`}
-          {!isMyBiddingTurn && !isMyPlayTurn && game.phase === 'PLAYING' && activePlayer && `Waiting for ${activePlayer.name}...`}
-        </div>
+      {(() => {
+        const cardSize = isMobile ? 'sm' : window.innerHeight < 750 ? 'md' : 'lg';
+        const footerHeightClass = cardSize === 'sm'
+          ? 'h-28'
+          : cardSize === 'md'
+            ? 'h-38 md:h-42'
+            : 'h-52 md:h-60';
 
-        {myPlayer && (
-          <Hand
-            hand={myPlayer.hand}
-            validPlays={isMyPlayTurn && game.current_trick ? getValidPlays(myPlayer.hand, game.current_trick.lead_suit) : []}
-            active={isMyPlayTurn}
-            onPlayCard={handlePlayCard}
-          />
-        )}
-      </footer>
+        return (
+          <footer className={`w-full ${footerHeightClass} z-35 relative shrink-0 flex flex-col items-center justify-end bg-gradient-to-t from-[#0e0e0f] to-transparent pb-4`}>
+            {/* Status prompt alert */}
+            <div className="absolute top-0 transform -translate-y-8 font-mono text-[10px] md:text-xs text-on-surface-variant bg-[#131315]/85 border border-outline-variant/20 rounded-full px-4 py-1 animate-pulse z-30">
+              {game.phase === 'BIDDING' && biddingDelayTimeLeft > 0 && "Inspect your cards. Bidding countdown active."}
+              {isMyBiddingTurn && "Place your trick forecast bid."}
+              {isMyPlayTurn && "Your turn. Play a card following lead suit if possible."}
+              {!isMyBiddingTurn && !isMyPlayTurn && game.phase === 'BIDDING' && biddingDelayTimeLeft <= 0 && activePlayer && `Waiting for ${activePlayer.name} to bid...`}
+              {!isMyBiddingTurn && !isMyPlayTurn && game.phase === 'PLAYING' && activePlayer && `Waiting for ${activePlayer.name}...`}
+            </div>
+
+            {myPlayer && (
+              <Hand
+                hand={myPlayer.hand}
+                validPlays={isMyPlayTurn && game.current_trick ? getValidPlays(myPlayer.hand, game.current_trick.lead_suit) : []}
+                active={isMyPlayTurn}
+                onPlayCard={handlePlayCard}
+                cardSize={cardSize}
+              />
+            )}
+          </footer>
+        );
+      })()}
 
       {/* Overlays / Modals */}
       <AnimatePresence>
