@@ -200,15 +200,8 @@ export const Game: React.FC = () => {
     <div className="felt-texture h-full w-full flex flex-col justify-between overflow-hidden relative">
       <div className="absolute inset-0 bg-[#0e0e0f]/50 backdrop-blur-[1px] z-0" />
 
-      {/* Heavy Backdrop Blur Overlay during Card Inspection */}
-      <div 
-        className={`fixed inset-0 bg-[#070708]/85 backdrop-blur-[14px] transition-all duration-700 pointer-events-none ${
-          isInspectionActive ? 'opacity-100 z-20' : 'opacity-0 -z-10'
-        }`}
-      />
-
       {/* Top HUD Header */}
-      <header className={`bg-surface-dim/80 backdrop-blur-xl border-b border-outline-variant/20 h-14 px-4 flex justify-between items-center shrink-0 transition-all duration-500 ${isInspectionActive ? 'z-10 blur-[8px] pointer-events-none opacity-20' : 'z-30'}`}>
+      <header className={`bg-surface-dim/80 backdrop-blur-xl border-b border-outline-variant/20 h-14 px-4 flex justify-between items-center shrink-0 transition-all duration-500 ${isInspectionActive ? 'z-10 pointer-events-none opacity-20' : 'z-30'}`}>
         <div className="flex items-center gap-4">
           <button 
             onClick={() => setIsSidebarOpen(true)}
@@ -263,7 +256,7 @@ export const Game: React.FC = () => {
       </header>
 
       {/* Main Table Content */}
-      <main className={`flex-1 w-full flex flex-col md:flex-row relative items-center justify-center p-4 transition-all duration-500 ${isInspectionActive ? 'z-10 blur-[8px] pointer-events-none opacity-20' : 'z-10'}`}>
+      <main className={`flex-1 w-full flex flex-col md:flex-row relative items-center justify-center p-4 transition-all duration-500 ${isInspectionActive ? 'z-10 pointer-events-none opacity-20' : 'z-10'}`}>
         
         {/* Seated Table Container */}
         <div className="relative w-full max-w-[42vh] md:max-w-[48vh] lg:max-w-[50vh] aspect-square flex items-center justify-center border border-white/5 rounded-full bg-charcoal/10 shadow-[inset_0_0_60px_rgba(0,0,0,0.8)] z-10">
@@ -396,17 +389,41 @@ export const Game: React.FC = () => {
         )}
 
         {isInspectionActive && (
-          <div className="fixed inset-0 flex flex-col items-center justify-center z-40 pointer-events-none select-none p-4 bg-transparent">
-            <div className="glass-panel px-8 py-6 rounded-3xl flex flex-col items-center border border-white/10 shadow-[0_0_50px_rgba(0,0,0,0.9)] max-w-sm w-full">
-              <span className="text-xs uppercase font-mono tracking-widest text-electricBlue font-black mb-2 flex items-center gap-2">
-                <span className="material-symbols-outlined text-sm animate-spin" style={{ animationDuration: '3s' }}>hourglass_empty</span>
-                Card Inspection Phase
-              </span>
-              <span className="text-2xl font-black font-mono text-white text-center">
-                Bidding begins in <span className="text-amber-500 font-extrabold">{biddingDelayTimeLeft}s</span>
-              </span>
+          <>
+            {/* Smooth Backdrop overlay */}
+            <motion.div
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              exit={{ opacity: 0 }}
+              transition={{ duration: 0.3 }}
+              className="fixed inset-0 bg-[#070708]/80 backdrop-blur-sm z-30 pointer-events-none"
+            />
+            {/* Centered animated Card Inspection popup */}
+            <div className="fixed inset-0 flex flex-col items-center justify-center z-40 pointer-events-none select-none p-4 bg-transparent">
+              <motion.div
+                initial={{ scale: 0.9, opacity: 0, y: 15 }}
+                animate={{ scale: 1, opacity: 1, y: 0 }}
+                exit={{ scale: 0.9, opacity: 0, y: 15 }}
+                transition={{ type: "spring", damping: 20, stiffness: 260 }}
+                className="glass-panel px-8 py-6 rounded-3xl flex flex-col items-center border border-white/10 shadow-[0_0_50px_rgba(0,0,0,0.9)] max-w-sm w-full pointer-events-auto"
+              >
+                <span className="text-xs uppercase font-mono tracking-widest text-electricBlue font-black mb-2.5 flex items-center gap-2">
+                  <motion.span
+                    animate={{ rotate: 360 }}
+                    transition={{ repeat: Infinity, duration: 2.5, ease: "linear" }}
+                    className="material-symbols-outlined text-base text-electricBlue select-none flex items-center justify-center"
+                    style={{ willChange: 'transform' }}
+                  >
+                    progress_activity
+                  </motion.span>
+                  Card Inspection Phase
+                </span>
+                <span className="text-2xl font-black font-mono text-white text-center">
+                  Bidding begins in <span className="text-amber-500 font-extrabold">{biddingDelayTimeLeft}s</span>
+                </span>
+              </motion.div>
             </div>
-          </div>
+          </>
         )}
 
         {game.phase === 'ROUND_END' && (
