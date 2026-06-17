@@ -33,6 +33,20 @@ export const Game: React.FC = () => {
   const [isSidebarOpen, setIsSidebarOpen] = useState(false);
   const [muted, setMuted] = useState(sfx.muted);
 
+  const tableRef = useRef<HTMLDivElement>(null);
+  const [tableWidth, setTableWidth] = useState(window.innerWidth < 768 ? 320 : 450);
+
+  useEffect(() => {
+    if (!tableRef.current) return;
+    const resizeObserver = new ResizeObserver((entries) => {
+      for (let entry of entries) {
+        setTableWidth(entry.contentRect.width);
+      }
+    });
+    resizeObserver.observe(tableRef.current);
+    return () => resizeObserver.disconnect();
+  }, [roomState?.game_state]);
+
   const prevRound = useRef(0);
   const prevPhase = useRef('');
   const prevTricksWon = useRef<Record<string, number>>({});
@@ -174,6 +188,7 @@ export const Game: React.FC = () => {
   const isMyBiddingTurn = game.phase === 'BIDDING' && game.active_player_id === playerId && biddingDelayTimeLeft <= 0;
   const isMyPlayTurn = game.phase === 'PLAYING' && game.active_player_id === playerId;
   const isInspectionActive = game.phase === 'BIDDING' && biddingDelayTimeLeft > 0;
+  const showHandAtBottom = isMobile || game.phase === 'BIDDING';
 
   // Seating configuration clockwise around the circular table starting from client player at index 0
   const N = game.players.length;
@@ -270,6 +285,7 @@ export const Game: React.FC = () => {
       </header>
 
       {/* Main Table Content */}
+<<<<<<< HEAD
       <main className={`flex-1 w-full flex flex-col md:flex-row relative items-center justify-center p-4 transition-all duration-500 ${isInspectionActive ? 'z-10 pointer-events-none opacity-20' : 'z-10'}`}>
         
         {/* Seated Table Container */}
@@ -317,17 +333,100 @@ export const Game: React.FC = () => {
               </div>
             );
           })}
+=======
+      <main className="flex-1 w-full flex flex-col md:flex-row relative items-center justify-between px-6 py-4 gap-6 z-10 overflow-hidden">
+        
+        {/* Desktop Left Hand Sidebar */}
+        {!showHandAtBottom && myPlayer && (
+          <aside className="w-64 lg:w-72 h-[85%] max-h-[70vh] glass-panel rounded-2xl p-4 border border-white/5 flex flex-col shrink-0 z-20 animate-slide-in">
+            <h4 className="text-xs md:text-sm uppercase tracking-widest text-on-surface-variant font-mono font-bold mb-4 flex items-center gap-2 border-b border-outline-variant/30 pb-2 shrink-0">
+              <span className="material-symbols-outlined text-sm text-electricBlue">style</span>
+              Your Hand
+            </h4>
+            <div className="flex-1 overflow-hidden">
+              <Hand
+                hand={myPlayer.hand}
+                validPlays={isMyPlayTurn && game.current_trick ? getValidPlays(myPlayer.hand, game.current_trick.lead_suit) : []}
+                active={isMyPlayTurn}
+                onPlayCard={handlePlayCard}
+                layout="vertical"
+              />
+            </div>
+          </aside>
+        )}
+
+        {/* Center Table Column */}
+        <div className="flex-1 flex items-center justify-center min-w-0 h-full">
+          <div 
+            ref={tableRef}
+            className={`relative w-full ${isMobile ? 'aspect-square max-w-[42vh]' : 'aspect-[1.5] max-w-[48vw] lg:max-w-[54vw] xl:max-w-[58vw] max-h-[52vh]'} flex items-center justify-center border border-white/5 rounded-full bg-charcoal/10 shadow-[inset_0_0_60px_rgba(0,0,0,0.8)] z-10 transition-all duration-500 ${
+              isInspectionActive ? 'blur-[8px] opacity-20 pointer-events-none' : ''
+            }`}
+          >
+            {/* Active Center Trick Area */}
+            {game.current_trick && (
+              <TrickArea
+                cardsPlayed={game.current_trick.cards_played}
+                players={game.players}
+                clientPlayerId={playerId || ''}
+                tableWidth={tableWidth}
+              />
+            )}
+
+            {/* Seat Players Around Circular Perimeter */}
+            {game.players.map((p, idx) => {
+              const seat = (idx - clientIdx + N) % N;
+              
+              // Seating coordinates are elliptical (oval) on desktop to stretch players out horizontally
+              const rx = isMobile 
+                ? Math.max(100, Math.min(tableWidth * 0.38, 130))
+                : Math.max(220, Math.min(tableWidth * 0.45, 420));
+              const ry = isMobile 
+                ? Math.max(100, Math.min(tableWidth * 0.38, 130))
+                : Math.max(160, Math.min((tableWidth / 1.5) * 0.45, 300));
+
+              const angle = (Math.PI / 2) + (2 * Math.PI * seat / N);
+              const x = Math.cos(angle) * rx;
+              const y = Math.sin(angle) * ry;
+              
+              const isPlayerActive = game.active_player_id === p.id;
+              const isBiddingStarter = game.bidding_starter_id === p.id;
+
+              return (
+                <div
+                  key={p.id}
+                  style={{
+                    position: 'absolute',
+                    top: '50%',
+                    left: '50%',
+                    transform: `translate(calc(-50% + ${x}px), calc(-50% + ${y}px))`,
+                  }}
+                  className="z-10"
+                >
+                  <PlayerAvatar
+                    player={p}
+                    isActive={isPlayerActive}
+                    isBiddingStarter={isBiddingStarter}
+                    timeLeft={isPlayerActive ? timeLeft : 100}
+                  />
+                </div>
+              );
+            })}
+          </div>
+>>>>>>> 0c199d9 (Add production cors)
         </div>
 
-        {/* Desktop Sidebars (Leaderboard + Chat) */}
+        {/* Desktop Right Sidebar (Leaderboard + Chat) */}
         {!isMobile && (
-          <aside className="w-80 xl:w-96 h-[80%] flex flex-col gap-4 absolute right-6 top-[10%] z-20">
-            <div className="flex-1">
+          <aside className={`w-72 lg:w-80 h-[85%] max-h-[75vh] flex flex-col gap-4 shrink-0 z-20 transition-all duration-500 ${
+            isInspectionActive ? 'blur-[8px] opacity-20 pointer-events-none' : ''
+          }`}>
+            <div className="shrink-0">
               <Scoreboard players={game.players} activePlayerId={game.active_player_id} />
             </div>
             
             {/* Cyber Chat Log */}
-            <div className="h-64 glass-panel rounded-2xl p-4 border border-white/5 flex flex-col">
+            <div className="flex-1 min-h-[180px] h-auto glass-panel rounded-2xl p-4 border border-white/5 flex flex-col">
               <h4 className="text-xs md:text-sm uppercase tracking-widest text-on-surface-variant font-mono font-bold mb-2 flex items-center gap-2 border-b border-outline-variant/30 pb-2 shrink-0">
                 <span className="material-symbols-outlined text-sm">chat</span>
                 Link Communications
@@ -362,6 +461,7 @@ export const Game: React.FC = () => {
       </main>
 
       {/* Hand Cards Panel at bottom */}
+<<<<<<< HEAD
       {(() => {
         const cardSize = isMobile ? 'sm' : window.innerHeight < 750 ? 'md' : 'lg';
         const footerHeightClass = cardSize === 'sm'
@@ -393,6 +493,32 @@ export const Game: React.FC = () => {
           </footer>
         );
       })()}
+=======
+      <footer className={`w-full z-30 relative shrink-0 flex flex-col items-center justify-end bg-gradient-to-t from-[#0e0e0f] to-transparent pb-4 transition-all duration-300 ${
+        showHandAtBottom ? 'h-52 md:h-60' : 'h-16'
+      }`}>
+        {/* Status prompt alert */}
+        <div className={`absolute top-0 transform -translate-y-8 font-mono text-[10px] md:text-xs text-on-surface-variant bg-[#131315]/85 border border-outline-variant/20 rounded-full px-4 py-1 animate-pulse z-30 ${
+          !showHandAtBottom ? 'translate-y-[-4px]' : ''
+        }`}>
+          {game.phase === 'BIDDING' && biddingDelayTimeLeft > 0 && "Inspect your cards. Bidding countdown active."}
+          {isMyBiddingTurn && "Place your trick forecast bid."}
+          {isMyPlayTurn && "Your turn. Play a card following lead suit if possible."}
+          {!isMyBiddingTurn && !isMyPlayTurn && game.phase === 'BIDDING' && biddingDelayTimeLeft <= 0 && activePlayer && `Waiting for ${activePlayer.name} to bid...`}
+          {!isMyBiddingTurn && !isMyPlayTurn && game.phase === 'PLAYING' && activePlayer && `Waiting for ${activePlayer.name}...`}
+        </div>
+
+        {showHandAtBottom && myPlayer && (
+          <Hand
+            hand={myPlayer.hand}
+            validPlays={isMyPlayTurn && game.current_trick ? getValidPlays(myPlayer.hand, game.current_trick.lead_suit) : []}
+            active={isMyPlayTurn}
+            onPlayCard={handlePlayCard}
+            layout="horizontal"
+          />
+        )}
+      </footer>
+>>>>>>> 0c199d9 (Add production cors)
 
       {/* Overlays / Modals */}
       <AnimatePresence>
