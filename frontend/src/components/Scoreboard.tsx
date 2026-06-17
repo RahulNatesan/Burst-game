@@ -14,13 +14,13 @@ export const Scoreboard: React.FC<ScoreboardProps> = ({
   const sortedPlayers = [...players].sort((a, b) => b.total_score - a.total_score);
 
   return (
-    <div className="glass-panel w-full rounded-2xl p-4 md:p-5 border border-white/5 flex flex-col">
+    <div className="glass-panel w-full h-full rounded-2xl p-4 md:p-5 border border-white/5 flex flex-col overflow-hidden">
       <h3 className="font-headline font-bold text-base md:text-lg text-primary tracking-wider uppercase mb-3 border-b border-outline-variant/30 pb-2 flex items-center gap-2 shrink-0">
         <span className="material-symbols-outlined text-lg">leaderboard</span>
         Live Leaderboard
       </h3>
 
-      <div className="space-y-2.5">
+      <div className="flex-1 overflow-y-auto space-y-2.5 pr-1">
         {sortedPlayers.map((p, idx) => {
           const isActive = p.id === activePlayerId;
           const hitScore = p.bid !== null && p.tricks_won === p.bid;

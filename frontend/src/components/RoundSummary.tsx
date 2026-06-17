@@ -100,12 +100,7 @@ export const RoundSummary: React.FC<RoundSummaryProps> = ({
                 const change = rankChanges[p.id] ?? 0;
                 const rankLabel = idx + 1;
 
-<<<<<<< HEAD
                 const medalIcons = ['🥇', '🥈', '🥉'];
-=======
-              // Medal icons for top 3
-              const medalIcons = ['🥇', '🥈', '🥉'];
->>>>>>> 0c199d9 (Add production cors)
 
                 return (
                   <motion.div
