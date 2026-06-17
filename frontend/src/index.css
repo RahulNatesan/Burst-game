@@ -1,0 +1,94 @@
+@import "tailwindcss";
+@config "../tailwind.config.js";
+
+@layer base {
+  body {
+    @apply bg-[#131315] text-[#e5e2e3] font-sans antialiased overflow-hidden select-none h-screen w-screen;
+  }
+}
+
+.material-symbols-outlined {
+  font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+  display: inline-block;
+  line-height: 1;
+  vertical-align: middle;
+}
+
+/* Felt table carbon-fibre texture */
+.felt-texture {
+  background-color: #0e0e0f;
+  background-image: radial-gradient(circle at center, #1b1b1d 0%, #0e0e0f 100%);
+  position: relative;
+}
+
+.felt-texture::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  opacity: 0.04;
+  background-image: url("https://www.transparenttextures.com/patterns/carbon-fibre.png");
+  pointer-events: none;
+}
+
+/* Glowing, glassmorphic, and shadows utilities */
+.card-shadow {
+  box-shadow: 0 10px 20px -5px rgba(0,0,0,0.7);
+}
+
+.glass-panel {
+  background: rgba(27, 27, 29, 0.75);
+  backdrop-filter: blur(16px);
+  border: 1px solid rgba(255, 255, 255, 0.06);
+}
+
+.player-active-ring {
+  animation: pulse-ring 2s infinite;
+}
+
+@keyframes pulse-ring {
+  0% { box-shadow: 0 0 0 0 rgba(59, 130, 246, 0.5); }
+  70% { box-shadow: 0 0 0 12px rgba(59, 130, 246, 0); }
+  100% { box-shadow: 0 0 0 0 rgba(59, 130, 246, 0); }
+}
+
+.trump-glow {
+  text-shadow: 0 0 12px rgba(239, 68, 68, 0.85);
+}
+
+.gold-glow {
+  box-shadow: 0 0 20px rgba(255, 185, 95, 0.35);
+  border-color: rgba(255, 185, 95, 0.5);
+}
+
+@keyframes float {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-8px); }
+}
+
+.animate-float {
+  animation: float 4s ease-in-out infinite;
+}
+
+@keyframes score-tick {
+  from { transform: scale(1.25); color: #ffb95f; }
+  to { transform: scale(1); color: #e5e2e3; }
+}
+
+.score-anim {
+  animation: score-tick 0.25s ease-out;
+}
+
+/* Custom scrollbar styling */
+::-webkit-scrollbar {
+  width: 6px;
+}
+::-webkit-scrollbar-track {
+  background: rgba(0,0,0,0.2);
+}
+::-webkit-scrollbar-thumb {
+  background: rgba(255,255,255,0.1);
+  border-radius: 3px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: rgba(255,255,255,0.2);
+}

@@ -1,0 +1,2028 @@
+<!DOCTYPE html>
+<html class="dark" lang="en">
+<head>
+    <meta charset="utf-8"/>
+    <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+    <title>Burst - Table #402</title>
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+    <!-- Google Fonts & Icons -->
+    <link href="https://fonts.googleapis.com/css2?family=Anybody:ital,wght@0,400;0,600;0,700;0,800;1,800&family=Geist:wght@400;600&family=JetBrains+Mono:wght@500;700&family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet"/>
+    <script id="tailwind-config">
+        tailwind.config = {
+          darkMode: "class",
+          theme: {
+            extend: {
+              "colors": {
+                "surface-container-high": "#2a2a2b",
+                "secondary": "#ffb3ad",
+                "surface-dim": "#131315",
+                "secondary-fixed": "#ffdad7",
+                "secondary-fixed-dim": "#ffb3ad",
+                "surface-container": "#201f21",
+                "background": "#131315",
+                "outline-variant": "#46464c",
+                "surface-container-highest": "#353436",
+                "on-secondary-fixed-variant": "#930013",
+                "primary-container": "#020617",
+                "error": "#ffb4ab",
+                "on-background": "#e5e2e3",
+                "on-primary-fixed": "#151b2d",
+                "primary-fixed": "#dce1fb",
+                "surface-bright": "#39393a",
+                "surface-variant": "#353436",
+                "error-container": "#93000a",
+                "tertiary-container": "#0e0500",
+                "secondary-container": "#a40217",
+                "inverse-surface": "#e5e2e3",
+                "on-primary-container": "#72778d",
+                "on-primary": "#2a3043",
+                "inverse-primary": "#585e73",
+                "on-secondary-container": "#ffaea8",
+                "surface": "#131315",
+                "on-surface": "#e5e2e3",
+                "on-tertiary-container": "#a86a00",
+                "inverse-on-surface": "#303032",
+                "tertiary": "#ffb95f",
+                "on-error": "#690005",
+                "primary-fixed-dim": "#c0c6de",
+                "outline": "#909097",
+                "on-error-container": "#ffdad6",
+                "surface-container-lowest": "#0e0e0f",
+                "surface-tint": "#c0c6de",
+                "on-surface-variant": "#c6c6cd",
+                "on-secondary": "#68000a",
+                "on-tertiary": "#472a00",
+                "tertiary-fixed": "#ffddb8",
+                "tertiary-fixed-dim": "#ffb95f",
+                "on-tertiary-fixed": "#2a1700",
+                "on-tertiary-fixed-variant": "#653e00",
+                "surface-container-low": "#1b1b1d",
+                "primary": "#c0c6de",
+                "on-primary-fixed-variant": "#40465a",
+                "on-secondary-fixed": "#410004",
+                "accent-gold": "#F59E0B",
+                "accent-crimson": "#EF4444"
+              },
+              "borderRadius": {
+                "DEFAULT": "0.125rem",
+                "lg": "0.25rem",
+                "xl": "0.5rem",
+                "full": "0.75rem"
+              },
+              "spacing": {
+                "margin-mobile": "16px",
+                "unit": "4px",
+                "stack-lg": "32px",
+                "margin-desktop": "32px",
+                "stack-sm": "8px",
+                "gutter": "16px",
+                "stack-md": "16px"
+              },
+              "fontFamily": {
+                "headline-lg-mobile": ["Anybody"],
+                "body-lg": ["Geist"],
+                "headline-md": ["Anybody"],
+                "body-md": ["Geist"],
+                "label-mono": ["JetBrains Mono"],
+                "display-xl": ["Anybody"],
+                "headline-lg": ["Anybody"]
+              },
+              "fontSize": {
+                "headline-lg-mobile": ["32px", {"lineHeight": "1.2", "fontWeight": "700"}],
+                "body-lg": ["18px", {"lineHeight": "1.6", "fontWeight": "400"}],
+                "headline-md": ["24px", {"lineHeight": "1.3", "fontWeight": "600"}],
+                "body-md": ["16px", {"lineHeight": "1.6", "fontWeight": "400"}],
+                "label-mono": ["14px", {"lineHeight": "1.0", "letterSpacing": "0.05em", "fontWeight": "500"}],
+                "display-xl": ["72px", {"lineHeight": "1.1", "letterSpacing": "-0.04em", "fontWeight": "800"}],
+                "headline-lg": ["40px", {"lineHeight": "1.2", "letterSpacing": "-0.02em", "fontWeight": "700"}]
+              }
+            },
+          },
+        }
+    </script>
+    <style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+            display: inline-block;
+            line-height: 1;
+            vertical-align: middle;
+        }
+        .felt-texture {
+            background-color: #0e0e0f;
+            background-image: radial-gradient(circle at center, #1b1b1d 0%, #0e0e0f 100%);
+            position: relative;
+        }
+        .felt-texture::after {
+            content: "";
+            position: absolute;
+            inset: 0;
+            opacity: 0.04;
+            background-image: url("https://www.transparenttextures.com/patterns/carbon-fibre.png");
+            pointer-events: none;
+        }
+        .card-shadow {
+            box-shadow: 0 10px 20px -5px rgba(0,0,0,0.7);
+        }
+        .glass-panel {
+            background: rgba(27, 27, 29, 0.75);
+            backdrop-filter: blur(16px);
+            border: 1px solid rgba(255, 255, 255, 0.06);
+        }
+        .player-active-ring {
+            animation: pulse-ring 2s infinite;
+        }
+        @keyframes pulse-ring {
+            0% { box-shadow: 0 0 0 0 rgba(192, 198, 222, 0.5); }
+            70% { box-shadow: 0 0 0 12px rgba(192, 198, 222, 0); }
+            100% { box-shadow: 0 0 0 0 rgba(192, 198, 222, 0); }
+        }
+        .trump-glow {
+            text-shadow: 0 0 12px rgba(239, 68, 68, 0.85);
+        }
+        .gold-glow {
+            box-shadow: 0 0 20px rgba(255, 185, 95, 0.35);
+            border-color: rgba(255, 185, 95, 0.5);
+        }
+        @keyframes float {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-8px); }
+        }
+        .animate-float {
+            animation: float 4s ease-in-out infinite;
+        }
+        @keyframes score-tick {
+            from { transform: scale(1.25); color: #ffb95f; }
+            to { transform: scale(1); color: #e5e2e3; }
+        }
+        .score-anim { animation: score-tick 0.25s ease-out; }
+        .screen {
+            display: none;
+        }
+        .screen.active {
+            display: block;
+        }
+        .flex-screen.active {
+            display: flex;
+        }
+        /* Card dealing animation utilities */
+        .card-deal-anim {
+            transition: all 0.5s cubic-bezier(0.19, 1, 0.22, 1);
+        }
+        /* Custom scrollbar */
+        ::-webkit-scrollbar {
+            width: 6px;
+        }
+        ::-webkit-scrollbar-track {
+            background: rgba(0,0,0,0.2);
+        }
+        ::-webkit-scrollbar-thumb {
+            background: rgba(255,255,255,0.1);
+            border-radius: 3px;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: rgba(255,255,255,0.2);
+        }
+    </style>
+</head>
+<body class="bg-background text-on-background font-body-md overflow-hidden selection:bg-primary selection:text-on-primary">
+
+<!-- App Wrapper -->
+<div class="h-screen w-screen flex flex-col relative select-none">
+    
+    <!-- Top Navigation Anchor (Shared across Screens) -->
+    <header class="bg-surface-dim/80 backdrop-blur-xl text-primary font-headline-md text-headline-md border-b border-outline-variant/30 shadow-sm flex justify-between items-center w-full px-margin-mobile md:px-margin-desktop h-16 z-50 fixed top-0">
+        <div class="flex items-center gap-4">
+            <span class="font-headline-md text-headline-md font-black text-primary italic tracking-tighter cursor-pointer" onclick="goToLobby()">Burst</span>
+            <div class="hidden md:flex gap-6 ml-8">
+                <button id="nav-game-btn" class="text-primary font-bold hover:bg-surface-container-highest transition-colors px-3 py-1 rounded-lg" onclick="startNewGame()">Game</button>
+                <button id="nav-lobby-btn" class="text-on-surface-variant hover:bg-surface-container-highest transition-colors px-3 py-1 rounded-lg" onclick="goToLobby()">Lobby</button>
+            </div>
+        </div>
+        <div class="flex items-center gap-4">
+            <!-- Sound Toggle Button -->
+            <button id="sound-toggle-btn" class="hover:bg-surface-container-highest text-primary transition-colors p-2 rounded-full active:scale-95 transition-transform" title="Toggle Sound">
+                <span class="material-symbols-outlined" id="sound-icon">volume_up</span>
+            </button>
+            <!-- Help/Rules Button -->
+            <button class="hover:bg-surface-container-highest text-on-surface-variant transition-colors p-2 rounded-full active:scale-95 transition-transform" onclick="toggleRulesModal(true)" title="How to Play">
+                <span class="material-symbols-outlined">help</span>
+            </button>
+        </div>
+    </header>
+
+    <!-- Content Area -->
+    <div class="flex-1 flex pt-16 h-full overflow-hidden">
+        
+        <!-- ==================== SCREEN 1: LOBBY SCREEN ==================== -->
+        <section id="screen-lobby" class="screen active flex-1 h-full w-full bg-surface-dim flex flex-col items-center justify-center p-6 overflow-y-auto">
+            <div class="max-w-2xl w-full glass-panel rounded-3xl p-8 border border-primary/10 shadow-2xl flex flex-col items-center text-center my-8">
+                <!-- Branding -->
+                <div class="mb-8">
+                    <h1 class="font-display-xl text-5xl md:text-7xl font-black italic tracking-tighter uppercase mb-2 bg-gradient-to-r from-tertiary to-secondary bg-clip-text text-transparent">BURST</h1>
+                    <p class="font-body-lg text-on-surface-variant max-w-md mx-auto">A high-stakes tactical bidding card game. Bid precisely, play strategically, and avoid bursting.</p>
+                </div>
+
+                <!-- Custom Avatar & Profile Setup -->
+                <div class="w-full mb-8">
+                    <h3 class="font-label-mono text-sm text-accent-gold uppercase tracking-wider mb-4">Set Up Your Strategy Profile</h3>
+                    
+                    <div class="flex flex-col md:flex-row items-center gap-6 justify-center">
+                        <!-- Left: Avatar Display -->
+                        <div class="relative">
+                            <div class="w-28 h-28 rounded-full border-4 border-primary overflow-hidden shadow-lg bg-surface-container">
+                                <img id="lobby-avatar-preview" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDVbH6TSCA4rA6qnh2HBzXxQurh1H8uNjNmCvrS8haV8gahPyJJuw7ZwPed_m6fft4q48DY4wfaXW_7m5AaWPRATasz6QaeNQHqYaJ5iVpB21F3Zmg0J998RDts_lAE8a2lDOQFaoGucBwkzzh8dHgs8TlcIkBX-yBMfxdDcsqR-4doYcOjDamXOz_kxTtaQYFOagR7yQyU9fbt5B72F0nkcPmp2I5IfxMrO0m83NwHqeV-qDODZOJz74-jLLwFQz2ERGyzg1nFefOL" alt="Your Avatar" class="w-full h-full object-cover">
+                            </div>
+                        </div>
+
+                        <!-- Right: Profile Name and Selectors -->
+                        <div class="flex-1 flex flex-col gap-4 w-full max-w-xs">
+                            <div>
+                                <label for="player-name-input" class="block text-left text-xs font-label-mono text-on-surface-variant uppercase mb-1">Tactical Callsign</label>
+                                <input type="text" id="player-name-input" value="Neon_Ghost" maxlength="12" class="w-full bg-surface-container border border-outline-variant/40 rounded-xl px-4 py-2 text-on-background focus:border-primary focus:ring-1 focus:ring-primary outline-none text-base">
+                            </div>
+                            
+                            <!-- Avatar Gallery Carousel -->
+                            <div>
+                                <span class="block text-left text-xs font-label-mono text-on-surface-variant uppercase mb-2">Select Digital Shell</span>
+                                <div class="flex items-center gap-2">
+                                    <button onclick="changeAvatar(-1)" class="bg-surface-container hover:bg-surface-container-highest border border-outline-variant/30 rounded-lg p-2 flex items-center justify-center">
+                                        <span class="material-symbols-outlined text-sm">chevron_left</span>
+                                    </button>
+                                    <div class="flex-1 text-sm text-center py-1 bg-surface-container/50 border border-outline-variant/20 rounded-lg font-label-mono text-primary truncate" id="avatar-label">
+                                        Neon Ghost (You)
+                                    </div>
+                                    <button onclick="changeAvatar(1)" class="bg-surface-container hover:bg-surface-container-highest border border-outline-variant/30 rounded-lg p-2 flex items-center justify-center">
+                                        <span class="material-symbols-outlined text-sm">chevron_right</span>
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Launch Button -->
+                <button onclick="startGameFromLobby()" class="w-full max-w-md bg-gradient-to-r from-primary to-on-primary-container text-on-primary font-headline-md text-lg font-bold py-4 rounded-xl uppercase tracking-widest shadow-xl shadow-primary/10 active:scale-[0.98] transition-all duration-150">
+                    Join Table #402
+                </button>
+
+                <div class="mt-8 flex items-center gap-4 text-xs font-label-mono text-on-surface-variant/50">
+                    <span>Active Players: 5/5</span>
+                    <span>•</span>
+                    <span>Game Mode: Tournament</span>
+                </div>
+            </div>
+        </section>
+
+        <!-- ==================== SCREEN 2: GAMEPLAY SCREEN ==================== -->
+        <div id="screen-game" class="screen flex-1 h-full w-full overflow-hidden flex pt-0">
+            
+            <!-- Side Navigation Aside (Desktop) -->
+            <aside class="hidden md:flex flex-col h-full w-64 bg-surface-container-low/95 backdrop-blur-2xl border-r border-outline-variant/20 shadow-2xl py-6 z-40 shrink-0">
+                <div class="px-6 mb-6">
+                    <h2 class="font-headline-md text-headline-md text-primary" id="sidebar-table-name">Table #402</h2>
+                    <p class="font-body-md text-on-surface-variant" id="sidebar-player-count">5 Players</p>
+                </div>
+                
+                <nav class="flex-1 space-y-1">
+                    <div class="bg-secondary-container text-on-secondary-container rounded-xl mx-2 flex items-center gap-3 px-4 py-3 cursor-pointer">
+                        <span class="material-symbols-outlined">playing_cards</span>
+                        <span class="font-body-md font-bold">Game</span>
+                    </div>
+                    <div class="text-on-surface-variant hover:text-on-surface hover:bg-surface-container-highest/30 mx-2 flex items-center gap-3 px-4 py-3 rounded-xl transition-all cursor-pointer" onclick="toggleRulesModal(true)">
+                        <span class="material-symbols-outlined">description</span>
+                        <span class="font-body-md">Rules</span>
+                    </div>
+                    <div class="text-on-surface-variant hover:text-on-surface hover:bg-surface-container-highest/30 mx-2 flex items-center gap-3 px-4 py-3 rounded-xl transition-all cursor-pointer" onclick="goToLobby()">
+                        <span class="material-symbols-outlined">logout</span>
+                        <span class="font-body-md">Lobby</span>
+                    </div>
+                </nav>
+
+                <!-- Sidebar Scoreboard Panel -->
+                <div class="px-4 mt-auto">
+                    <div class="glass-panel rounded-2xl p-4 border border-accent-gold/20">
+                        <p class="font-label-mono text-accent-gold mb-2 text-xs">SCOREBOARD</p>
+                        <div class="space-y-2">
+                            <div class="flex justify-between text-xs font-label-mono border-b border-outline-variant/20 pb-1 text-on-surface-variant">
+                                <span>PLAYER</span>
+                                <span>BID / WON</span>
+                            </div>
+                            
+                            <!-- Dynamic Sidebar Players List -->
+                            <div class="space-y-2" id="sidebar-scores-list">
+                                <!-- Populated dynamically -->
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </aside>
+
+            <!-- Main Gameplay Canvas -->
+            <main class="flex-1 relative overflow-hidden flex flex-col items-center justify-center felt-texture h-full">
+                
+                <!-- Trump Indicator (Top Right) -->
+                <div class="absolute top-6 right-6 glass-panel rounded-xl p-3 md:p-4 flex items-center gap-3 border border-accent-crimson/30 z-30">
+                    <div class="flex flex-col">
+                        <span class="font-label-mono text-[9px] md:text-[10px] text-accent-crimson tracking-widest uppercase">Trump Suit</span>
+                        <span class="font-headline-md text-base md:text-headline-md text-accent-crimson trump-glow uppercase" id="trump-name">HEARTS</span>
+                    </div>
+                    <span class="material-symbols-outlined text-3xl md:text-4xl text-accent-crimson" id="trump-icon" style="font-variation-settings: 'FILL' 1;">favorite</span>
+                </div>
+
+                <!-- Round Info (Top Left) -->
+                <div class="absolute top-6 left-6 glass-panel rounded-xl px-4 py-2 flex flex-col items-start z-30">
+                    <span class="font-label-mono text-accent-gold text-xs uppercase" id="round-num-label">ROUND 1</span>
+                    <span class="font-body-md font-bold text-sm md:text-base" id="round-cards-label">3 CARDS</span>
+                </div>
+
+                <!-- Live Logs / Game Ticker Overlay -->
+                <div class="absolute top-24 left-6 max-w-xs bg-surface-container-low/80 backdrop-blur-md border border-outline-variant/20 rounded-xl px-4 py-2 z-20 hidden md:block">
+                    <div class="text-xs text-on-surface-variant font-label-mono uppercase border-b border-outline-variant/20 pb-1 mb-1">Game Logs</div>
+                    <div id="game-logs" class="text-xs text-on-surface font-body-md max-h-20 overflow-y-auto space-y-1">
+                        <!-- Populated by script -->
+                    </div>
+                </div>
+
+                <!-- Circular Table Area -->
+                <div id="circular-table" class="relative w-[76vw] h-[76vw] max-w-[550px] max-h-[550px] md:max-w-[620px] md:max-h-[620px] rounded-full border-[8px] border-surface-container-highest shadow-[inset_0_0_80px_rgba(0,0,0,0.85)] flex items-center justify-center transition-all duration-300">
+                    
+                    <!-- Player Avatars around table (Positioned Absolutely) -->
+                    <!-- Bot 1 (Luna_7 - Left Middle) -->
+                    <div id="table-player-p5" class="absolute top-1/2 -left-16 md:-left-20 -translate-y-1/2 flex flex-col items-center gap-1.5 z-20 w-24">
+                        <div class="relative player-avatar-wrapper">
+                            <div class="w-14 h-14 md:w-16 md:h-16 rounded-full border-2 border-outline-variant bg-surface-container overflow-hidden avatar-ring">
+                                <img src="" alt="Luna_7" class="w-full h-full object-cover player-avatar-img">
+                            </div>
+                            <div class="absolute -bottom-1 -right-1 bg-surface-container-highest border border-outline-variant rounded-full w-5 h-5 flex items-center justify-center">
+                                <span class="text-[10px] font-label-mono text-accent-gold bot-score-mini">0</span>
+                            </div>
+                        </div>
+                        <span class="font-label-mono text-[10px] md:text-xs truncate max-w-[85px] text-center player-name">Luna_7</span>
+                        <div class="bg-surface-container/90 border border-outline-variant/30 rounded-full px-2 py-0.5 flex gap-1 items-center">
+                            <span class="text-[9px] font-label-mono text-on-surface-variant uppercase">BID:</span>
+                            <span class="text-[9px] font-label-mono font-bold text-primary bid-text">-</span>
+                            <span class="text-[9px] font-label-mono text-on-surface-variant">/</span>
+                            <span class="text-[9px] font-label-mono font-bold text-accent-gold won-text">0</span>
+                        </div>
+                    </div>
+
+                    <!-- Bot 2 (Viper_99 - Top Left) -->
+                    <div id="table-player-p2" class="absolute -top-12 left-1/4 -translate-x-1/2 flex flex-col items-center gap-1.5 z-20 w-24">
+                        <div class="relative player-avatar-wrapper">
+                            <div class="w-14 h-14 md:w-16 md:h-16 rounded-full border-2 border-outline-variant bg-surface-container overflow-hidden avatar-ring">
+                                <img src="" alt="Viper_99" class="w-full h-full object-cover player-avatar-img">
+                            </div>
+                            <div class="absolute -bottom-1 -right-1 bg-surface-container-highest border border-outline-variant rounded-full w-5 h-5 flex items-center justify-center">
+                                <span class="text-[10px] font-label-mono text-accent-gold bot-score-mini">0</span>
+                            </div>
+                        </div>
+                        <span class="font-label-mono text-[10px] md:text-xs truncate max-w-[85px] text-center player-name">Viper_99</span>
+                        <div class="bg-surface-container/90 border border-outline-variant/30 rounded-full px-2 py-0.5 flex gap-1 items-center">
+                            <span class="text-[9px] font-label-mono text-on-surface-variant uppercase">BID:</span>
+                            <span class="text-[9px] font-label-mono font-bold text-primary bid-text">-</span>
+                            <span class="text-[9px] font-label-mono text-on-surface-variant">/</span>
+                            <span class="text-[9px] font-label-mono font-bold text-accent-gold won-text">0</span>
+                        </div>
+                    </div>
+
+                    <!-- Bot 3 (Aria_Flux - Top Right) -->
+                    <div id="table-player-p3" class="absolute -top-12 right-1/4 translate-x-1/2 flex flex-col items-center gap-1.5 z-20 w-24">
+                        <div class="relative player-avatar-wrapper">
+                            <div class="w-14 h-14 md:w-16 md:h-16 rounded-full border-2 border-outline-variant bg-surface-container overflow-hidden avatar-ring">
+                                <img src="" alt="Aria_Flux" class="w-full h-full object-cover player-avatar-img">
+                            </div>
+                            <div class="absolute -bottom-1 -right-1 bg-surface-container-highest border border-outline-variant rounded-full w-5 h-5 flex items-center justify-center">
+                                <span class="text-[10px] font-label-mono text-accent-gold bot-score-mini">0</span>
+                            </div>
+                        </div>
+                        <span class="font-label-mono text-[10px] md:text-xs truncate max-w-[85px] text-center player-name">Aria_Flux</span>
+                        <div class="bg-surface-container/90 border border-outline-variant/30 rounded-full px-2 py-0.5 flex gap-1 items-center">
+                            <span class="text-[9px] font-label-mono text-on-surface-variant uppercase">BID:</span>
+                            <span class="text-[9px] font-label-mono font-bold text-primary bid-text">-</span>
+                            <span class="text-[9px] font-label-mono text-on-surface-variant">/</span>
+                            <span class="text-[9px] font-label-mono font-bold text-accent-gold won-text">0</span>
+                        </div>
+                    </div>
+
+                    <!-- Bot 4 (CardKing - Right Middle) -->
+                    <div id="table-player-p4" class="absolute top-1/2 -right-16 md:-right-20 -translate-y-1/2 flex flex-col items-center gap-1.5 z-20 w-24">
+                        <div class="relative player-avatar-wrapper">
+                            <div class="w-14 h-14 md:w-16 md:h-16 rounded-full border-2 border-outline-variant bg-surface-container overflow-hidden avatar-ring">
+                                <img src="" alt="CardKing" class="w-full h-full object-cover player-avatar-img">
+                            </div>
+                            <div class="absolute -bottom-1 -right-1 bg-surface-container-highest border border-outline-variant rounded-full w-5 h-5 flex items-center justify-center">
+                                <span class="text-[10px] font-label-mono text-accent-gold bot-score-mini">0</span>
+                            </div>
+                        </div>
+                        <span class="font-label-mono text-[10px] md:text-xs truncate max-w-[85px] text-center player-name">CardKing</span>
+                        <div class="bg-surface-container/90 border border-outline-variant/30 rounded-full px-2 py-0.5 flex gap-1 items-center">
+                            <span class="text-[9px] font-label-mono text-on-surface-variant uppercase">BID:</span>
+                            <span class="text-[9px] font-label-mono font-bold text-primary bid-text">-</span>
+                            <span class="text-[9px] font-label-mono text-on-surface-variant">/</span>
+                            <span class="text-[9px] font-label-mono font-bold text-accent-gold won-text">0</span>
+                        </div>
+                    </div>
+
+                    <!-- Center Trick Area (Where played cards are displayed) -->
+                    <div class="relative w-40 h-40 md:w-48 md:h-48 flex items-center justify-center" id="center-trick-area">
+                        <!-- Cards are fanned here dynamically by JavaScript -->
+                        <div class="text-center text-xs text-on-surface-variant/40 font-label-mono uppercase pointer-events-none select-none" id="trick-placeholder">
+                            Trick Cards
+                        </div>
+                    </div>
+
+                    <!-- Helper tooltip centered under trick area -->
+                    <div class="absolute bottom-8 left-1/2 -translate-x-1/2 bg-surface-dim/95 text-on-surface text-xs px-4 py-1.5 rounded-full border border-outline-variant/30 shadow-md font-label-mono hidden" id="table-toast">
+                        Wait for bots to play
+                    </div>
+                </div>
+
+                <!-- Player Hand (Bottom Area) -->
+                <div class="absolute bottom-4 left-1/2 -translate-x-1/2 flex flex-col items-center justify-end h-52 w-full px-4 overflow-visible z-30">
+                    
+                    <!-- Current Player Avatar & Turn Label (P1) -->
+                    <div class="absolute bottom-36 left-1/2 -translate-x-1/2 flex flex-col items-center gap-2 pointer-events-none">
+                        <div class="relative">
+                            <div class="w-16 h-16 md:w-18 md:h-18 rounded-full border-4 border-primary bg-surface-container overflow-hidden z-10" id="player-active-circle">
+                                <img id="player-avatar-img" src="" alt="Me" class="w-full h-full object-cover">
+                            </div>
+                            <!-- Player Timer Bar -->
+                            <div class="absolute -bottom-1.5 left-0 w-full h-2 bg-surface-container-highest rounded-full overflow-hidden border border-outline-variant">
+                                <div class="h-full bg-accent-gold transition-all duration-100 ease-linear w-full" id="timer-bar"></div>
+                            </div>
+                        </div>
+                        <span class="font-label-mono text-[10px] md:text-xs font-bold bg-primary text-on-primary px-3 py-0.5 rounded-full shadow-lg transition-all" id="turn-badge">YOUR TURN</span>
+                    </div>
+
+                    <!-- Cards Hand Container -->
+                    <div class="flex -space-x-8 md:-space-x-10 pb-2 transition-all duration-300 transform translate-y-12 hover:translate-y-4 cursor-pointer" id="cards-hand">
+                        <!-- Rendered Dynamically -->
+                    </div>
+                </div>
+
+            </main>
+        </div>
+    </div>
+
+    <!-- ==================== SCREEN 3: RESULTS SCREEN ==================== -->
+    <section id="screen-results" class="screen flex-1 h-screen w-screen bg-surface-dim overflow-y-auto pt-16 pb-24 md:pb-0 relative">
+        <!-- Particle Canvas Container -->
+        <canvas class="absolute inset-0 pointer-events-none z-0" id="particle-container"></canvas>
+        
+        <div class="max-w-6xl mx-auto px-margin-mobile md:px-margin-desktop py-8 relative z-10">
+            <!-- Hero Header -->
+            <div class="text-center mb-8">
+                <h1 class="font-display-xl text-4xl md:text-6xl uppercase italic font-black text-transparent bg-clip-text bg-gradient-to-r from-tertiary to-secondary tracking-tighter" id="results-headline">Victory Declared</h1>
+                <p class="text-on-surface-variant font-body-lg text-sm md:text-base max-w-xl mx-auto mt-2">The dust has settled. High stakes, higher rewards.</p>
+            </div>
+
+            <!-- Podium View -->
+            <div class="grid grid-cols-3 items-end gap-2 md:gap-gutter mb-8 max-w-2xl mx-auto px-4 h-72 relative">
+                
+                <!-- 2nd Place -->
+                <div class="flex flex-col items-center" id="podium-2nd">
+                    <div class="w-16 h-16 md:w-20 md:h-20 rounded-full border-4 border-outline mb-2 relative">
+                        <img id="podium-img-2" alt="2nd Place" class="rounded-full bg-surface-container w-full h-full object-cover">
+                        <div class="absolute -bottom-2 -right-2 bg-outline text-surface px-2 py-0.5 rounded-full text-[10px] font-bold uppercase font-label-mono">2nd</div>
+                    </div>
+                    <div class="w-full glass-panel h-28 rounded-t-xl flex flex-col items-center justify-center border-b-0 border-outline/30">
+                        <span id="podium-name-2" class="font-headline-md text-xs md:text-sm text-on-surface truncate px-2 max-w-full text-center">Bot_2</span>
+                        <span id="podium-score-2" class="font-label-mono text-xs md:text-sm text-primary">840 PTS</span>
+                    </div>
+                </div>
+
+                <!-- 1st Place (Winner) -->
+                <div class="flex flex-col items-center animate-float z-10" id="podium-1st">
+                    <div class="relative mb-3 flex flex-col items-center">
+                        <span class="material-symbols-outlined text-tertiary text-4xl md:text-5xl -mb-1 animate-bounce" style="font-variation-settings: 'FILL' 1;">workspace_premium</span>
+                        <div class="w-20 h-20 md:w-26 md:h-26 rounded-full border-4 gold-glow p-0.5 relative">
+                            <img id="podium-img-1" alt="1st Place" class="rounded-full bg-surface-container w-full h-full object-cover">
+                            <div class="absolute -bottom-2 -right-2 bg-tertiary text-surface px-2.5 py-0.5 rounded-full text-[10px] font-bold uppercase font-label-mono">1st</div>
+                        </div>
+                    </div>
+                    <div class="w-full bg-gradient-to-b from-tertiary/15 to-surface-container-highest h-38 rounded-t-2xl flex flex-col items-center justify-center border-2 border-b-0 border-tertiary shadow-2xl relative overflow-hidden">
+                        <div class="absolute top-0 left-0 w-full h-1 bg-tertiary animate-pulse"></div>
+                        <span id="podium-name-1" class="font-headline-md text-xs md:text-base text-tertiary uppercase tracking-wider px-2 text-center truncate max-w-full">Bot_1</span>
+                        <span id="podium-score-1" class="font-label-mono text-sm md:text-lg text-white mt-1 drop-shadow-[0_0_8px_rgba(255,255,255,0.4)]">1,245 PTS</span>
+                    </div>
+                </div>
+
+                <!-- 3rd Place -->
+                <div class="flex flex-col items-center" id="podium-3rd">
+                    <div class="w-14 h-14 md:w-18 md:h-18 rounded-full border-4 border-secondary-container mb-2 relative">
+                        <img id="podium-img-3" alt="3rd Place" class="rounded-full bg-surface-container w-full h-full object-cover">
+                        <div class="absolute -bottom-2 -right-2 bg-secondary-container text-on-secondary-container px-2 py-0.5 rounded-full text-[10px] font-bold uppercase font-label-mono">3rd</div>
+                    </div>
+                    <div class="w-full glass-panel h-22 rounded-t-xl flex flex-col items-center justify-center border-b-0 border-outline-variant/30">
+                        <span id="podium-name-3" class="font-headline-md text-xs md:text-sm text-on-surface truncate px-2 max-w-full text-center">Bot_3</span>
+                        <span id="podium-score-3" class="font-label-mono text-xs md:text-sm text-secondary">710 PTS</span>
+                    </div>
+                </div>
+
+            </div>
+
+            <!-- Score Calculation Component -->
+            <div class="glass-panel rounded-3xl p-5 mb-8 border border-tertiary/20 bg-surface-container-low/40">
+                <div class="flex flex-col md:flex-row items-center justify-between gap-6 px-4">
+                    <div class="flex items-center gap-4">
+                        <div class="bg-primary/10 p-3 rounded-full">
+                            <span class="material-symbols-outlined text-primary text-2xl">calculate</span>
+                        </div>
+                        <div>
+                            <h3 class="font-headline-md text-sm md:text-base uppercase tracking-widest text-primary">Your Last Round Calculation</h3>
+                            <p class="font-label-mono text-xs text-on-surface-variant">Score = Base (10) + Bonus (11 * Bid)</p>
+                        </div>
+                    </div>
+                    <div class="flex items-center gap-8 md:gap-12">
+                        <div class="text-center">
+                            <div class="font-label-mono text-xs text-on-surface-variant uppercase mb-1">Bid</div>
+                            <div class="font-headline-md text-xl md:text-2xl text-secondary" id="calc-bid">7</div>
+                        </div>
+                        <div class="text-center">
+                            <div class="font-label-mono text-xs text-on-surface-variant uppercase mb-1">Multiplier</div>
+                            <div class="font-headline-md text-xl md:text-2xl text-on-surface">x 11</div>
+                        </div>
+                        <div class="text-center">
+                            <div class="font-label-mono text-xs text-tertiary uppercase mb-1" id="calc-result-title">Burst Bonus</div>
+                            <div class="font-headline-md text-xl md:text-2xl text-tertiary" id="final-bonus">+87</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Bento Grid: Stats and Charts -->
+            <div class="grid grid-cols-1 lg:grid-cols-3 gap-6 mb-8">
+                <!-- Leaderboard Table -->
+                <div class="lg:col-span-2 glass-panel rounded-2xl p-0 overflow-hidden border border-outline-variant/20">
+                    <div class="bg-surface-container-highest/40 px-6 py-4 border-b border-outline-variant/30 flex justify-between items-center">
+                        <h3 class="font-headline-md text-sm md:text-base uppercase text-on-surface">Detailed Standings</h3>
+                        <span class="font-label-mono text-xs text-on-surface-variant">4 Rounds Played</span>
+                    </div>
+                    <div class="overflow-x-auto">
+                        <table class="w-full text-left font-body-md text-sm">
+                            <thead>
+                                <tr class="text-on-surface-variant font-label-mono text-xs border-b border-outline-variant/10">
+                                    <th class="px-6 py-4">Player</th>
+                                    <th class="px-6 py-4">Bids Hit Rate</th>
+                                    <th class="px-6 py-4">Total Bids</th>
+                                    <th class="px-6 py-4 text-right">Total Score</th>
+                                </tr>
+                            </thead>
+                            <tbody class="divide-y divide-outline-variant/10" id="results-table-body">
+                                <!-- Populated Dynamically -->
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+
+                <!-- Performance Delta Chart (Visual Bar Graph) -->
+                <div class="glass-panel rounded-2xl p-5 flex flex-col border border-outline-variant/20">
+                    <h3 class="font-headline-md text-sm uppercase text-on-surface mb-4">Your Performance Delta</h3>
+                    
+                    <div class="flex-1 flex items-end justify-between gap-4 px-2 pb-2 h-44" id="chart-bars-container">
+                        <!-- Generated Dynamically -->
+                    </div>
+                    
+                    <div class="mt-4 flex gap-4 text-[10px] font-label-mono uppercase justify-center border-t border-outline-variant/10 pt-3">
+                        <div class="flex items-center gap-1.5">
+                            <span class="w-2.5 h-2.5 bg-primary-container border border-primary/30 rounded-sm"></span> 
+                            <span class="text-on-surface-variant">Bid Target</span>
+                        </div>
+                        <div class="flex items-center gap-1.5">
+                            <span class="w-2.5 h-2.5 bg-tertiary rounded-sm"></span> 
+                            <span class="text-on-surface-variant">Tricks Won</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Final Actions -->
+            <div class="flex flex-col md:flex-row justify-center items-center gap-4 mt-8">
+                <button onclick="startNewGame()" class="w-full md:w-auto px-12 py-4 bg-gradient-to-r from-secondary-container to-secondary text-on-secondary-fixed font-headline-md text-sm uppercase tracking-widest rounded-full hover:scale-105 active:scale-95 transition-all shadow-xl shadow-secondary-container/20">
+                    Play Again
+                </button>
+                <button onclick="goToLobby()" class="w-full md:w-auto px-12 py-4 bg-surface-container-highest border border-outline-variant text-on-surface font-headline-md text-sm uppercase tracking-widest rounded-full hover:bg-surface-bright active:scale-95 transition-all">
+                    Back to Lobby
+                </button>
+            </div>
+        </div>
+    </section>
+
+    <!-- Bottom Navigation Bar (Mobile Viewport) -->
+    <nav class="fixed bottom-0 left-0 w-full z-40 flex justify-around items-center px-4 pb-4 md:hidden bg-surface-container-lowest/90 backdrop-blur-lg border-t border-outline-variant/10 shadow-[0_-8px_20px_-10px_rgba(0,0,0,0.5)] h-20">
+        <button onclick="startNewGame()" class="flex flex-col items-center justify-center text-primary bg-primary-container rounded-full p-2.5 ring-1 ring-primary/30 active:scale-90 duration-150" id="mob-nav-game">
+            <span class="material-symbols-outlined">style</span>
+            <span class="font-label-mono text-[9px] mt-0.5">Game</span>
+        </button>
+        <button onclick="goToLobby()" class="flex flex-col items-center justify-center text-on-surface-variant p-2 hover:text-primary active:scale-90 duration-150" id="mob-nav-lobby">
+            <span class="material-symbols-outlined">group</span>
+            <span class="font-label-mono text-[9px] mt-0.5">Lobby</span>
+        </button>
+        <button onclick="toggleRulesModal(true)" class="flex flex-col items-center justify-center text-on-surface-variant p-2 hover:text-primary active:scale-90 duration-150">
+            <span class="material-symbols-outlined">help</span>
+            <span class="font-label-mono text-[9px] mt-0.5">Rules</span>
+        </button>
+    </nav>
+
+    <!-- ==================== DIALOG 1: BIDDING MODAL ==================== -->
+    <div id="bidding-modal" class="fixed inset-0 z-[100] flex items-center justify-center bg-background/80 backdrop-blur-md hidden transition-all duration-300">
+        <div class="w-full max-w-lg glass-panel p-8 rounded-3xl border border-primary/20 shadow-[0_0_50px_rgba(192,198,222,0.1)] flex flex-col items-center text-center mx-4">
+            <div class="mb-6">
+                <h3 class="font-display-xl text-3xl md:text-5xl text-primary font-black italic tracking-tighter uppercase mb-2">BID NOW</h3>
+                <p class="font-body-lg text-sm md:text-base text-on-surface-variant" id="bid-modal-subtitle">How many tricks will you win in Round 1 (3 cards)?</p>
+            </div>
+            
+            <!-- Bidding Buttons Grid -->
+            <div class="grid grid-cols-4 sm:grid-cols-6 gap-3 w-full mb-8" id="bid-buttons-grid">
+                <!-- Populated dynamically -->
+            </div>
+
+            <!-- Confirm Bid -->
+            <div class="flex gap-4 w-full">
+                <button onclick="confirmSelectedBid()" class="flex-1 bg-gradient-to-r from-primary to-on-primary-container text-on-primary font-bold py-4 rounded-xl uppercase tracking-widest shadow-lg shadow-primary/20 active:scale-95 transition-transform">
+                    Confirm Bid
+                </button>
+            </div>
+            
+            <!-- Bid Meta Summary -->
+            <div class="mt-6 flex items-center gap-2 text-on-surface-variant/60 text-xs font-label-mono" id="bids-sum-panel">
+                <span class="material-symbols-outlined text-sm">info</span>
+                <span id="bids-sum-text">Total Bids on Table: -</span>
+            </div>
+        </div>
+    </div>
+
+    <!-- ==================== DIALOG 2: HOW TO PLAY MODAL ==================== -->
+    <div id="rules-modal" class="fixed inset-0 z-[100] flex items-center justify-center bg-background/80 backdrop-blur-md hidden">
+        <div class="w-full max-w-xl glass-panel p-8 rounded-3xl border border-primary/20 shadow-[0_0_50px_rgba(192,198,222,0.1)] flex flex-col mx-4 max-h-[85vh] overflow-y-auto">
+            <h3 class="font-display-xl text-2xl md:text-3xl text-primary font-black italic tracking-tighter uppercase mb-4 text-center">How to Play Burst</h3>
+            
+            <div class="space-y-4 font-body-md text-sm text-on-surface/90">
+                <p><strong>Burst</strong> is a competitive tactical trick-taking bidding card game played over 4 rounds. Your goal is to predict and win the exact number of tricks you bid. If you do, you secure a massive scoring bonus. If you win more or fewer, you "burst" and receive 0 points!</p>
+                
+                <div>
+                    <h4 class="font-bold text-accent-gold font-label-mono text-xs uppercase mb-1">1. Rounds and Dealing</h4>
+                    <p>The tournament runs for 4 rounds. The hand sizes scale up each round:</p>
+                    <ul class="list-disc list-inside ml-2 text-on-surface-variant">
+                        <li>Round 1: 3 cards</li>
+                        <li>Round 2: 5 cards</li>
+                        <li>Round 3: 8 cards</li>
+                        <li>Round 4: 10 cards</li>
+                    </ul>
+                </div>
+
+                <div>
+                    <h4 class="font-bold text-accent-gold font-label-mono text-xs uppercase mb-1">2. Bidding Phase</h4>
+                    <p>At the start of each round, a random <strong>Trump Suit</strong> is selected. Review your hand and bid between 0 and the number of cards in your hand. This is the exact number of tricks you aim to win.</p>
+                </div>
+
+                <div>
+                    <h4 class="font-bold text-accent-gold font-label-mono text-xs uppercase mb-1">3. Gameplay Tricks</h4>
+                    <p>A player leads the first trick. You must follow the led suit if you have cards of that suit. If not, you may play any card, including a Trump card. The trick is won by the highest card of the led suit, or by the highest Trump card if a trump is played.</p>
+                    <p class="mt-1 text-on-surface-variant">Card ranking: <strong>A</strong> (highest) &gt; <strong>K</strong> &gt; <strong>Q</strong> &gt; <strong>J</strong> &gt; <strong>10</strong> &gt; ... &gt; <strong>2</strong> (lowest).</p>
+                </div>
+
+                <div>
+                    <h4 class="font-bold text-accent-gold font-label-mono text-xs uppercase mb-1">4. Scoring System</h4>
+                    <p>At the end of the round, tricks won are checked against your bid:</p>
+                    <ul class="list-disc list-inside ml-2 text-on-surface-variant">
+                        <li><strong>Hit Bid Exactly:</strong> You gain <code>10 + (11 × Bid)</code> points.</li>
+                        <li><strong>Miss Bid (Burst):</strong> You receive <code>0</code> points.</li>
+                    </ul>
+                </div>
+            </div>
+
+            <button onclick="toggleRulesModal(false)" class="mt-8 bg-gradient-to-r from-primary to-on-primary-container text-on-primary font-bold py-3 rounded-xl uppercase tracking-widest active:scale-95 transition-transform w-full text-center">
+                Got It
+            </button>
+        </div>
+    </div>
+
+</div>
+
+<!-- Sound FX & Gameplay Script -->
+<script>
+    // ==================== WEB AUDIO ENGINE ====================
+    class SoundEngine {
+        constructor() {
+            this.ctx = null;
+            this.muted = false;
+        }
+
+        init() {
+            if (!this.ctx) {
+                this.ctx = new (window.AudioContext || window.webkitAudioContext)();
+            }
+        }
+
+        playTick() {
+            if (this.muted) return;
+            this.init();
+            const osc = this.ctx.createOscillator();
+            const gain = this.ctx.createGain();
+            osc.connect(gain);
+            gain.connect(this.ctx.destination);
+            
+            osc.frequency.setValueAtTime(800, this.ctx.currentTime);
+            gain.gain.setValueAtTime(0.02, this.ctx.currentTime);
+            gain.gain.exponentialRampToValueAtTime(0.001, this.ctx.currentTime + 0.05);
+            
+            osc.start();
+            osc.stop(this.ctx.currentTime + 0.05);
+        }
+
+        playDeal() {
+            if (this.muted) return;
+            this.init();
+            const bufferSize = this.ctx.sampleRate * 0.1; // 100ms
+            const buffer = this.ctx.createBuffer(1, bufferSize, this.ctx.sampleRate);
+            const data = buffer.getChannelData(0);
+            for (let i = 0; i < bufferSize; i++) {
+                data[i] = Math.random() * 2 - 1;
+            }
+            
+            const noise = this.ctx.createBufferSource();
+            noise.buffer = buffer;
+            
+            const filter = this.ctx.createBiquadFilter();
+            filter.type = 'bandpass';
+            filter.frequency.setValueAtTime(1000, this.ctx.currentTime);
+            filter.Q.setValueAtTime(2, this.ctx.currentTime);
+            
+            const gain = this.ctx.createGain();
+            gain.gain.setValueAtTime(0.05, this.ctx.currentTime);
+            gain.gain.exponentialRampToValueAtTime(0.001, this.ctx.currentTime + 0.1);
+            
+            noise.connect(filter);
+            filter.connect(gain);
+            gain.connect(this.ctx.destination);
+            
+            noise.start();
+        }
+
+        playCardPlay() {
+            if (this.muted) return;
+            this.init();
+            const osc = this.ctx.createOscillator();
+            const gain = this.ctx.createGain();
+            osc.connect(gain);
+            gain.connect(this.ctx.destination);
+            
+            osc.frequency.setValueAtTime(300, this.ctx.currentTime);
+            osc.frequency.exponentialRampToValueAtTime(150, this.ctx.currentTime + 0.15);
+            
+            gain.gain.setValueAtTime(0.1, this.ctx.currentTime);
+            gain.gain.exponentialRampToValueAtTime(0.001, this.ctx.currentTime + 0.15);
+            
+            osc.start();
+            osc.stop(this.ctx.currentTime + 0.15);
+        }
+
+        playWinTrick() {
+            if (this.muted) return;
+            this.init();
+            const now = this.ctx.currentTime;
+            
+            const playChimeNode = (freq, delay) => {
+                const osc = this.ctx.createOscillator();
+                const gain = this.ctx.createGain();
+                osc.type = 'triangle';
+                osc.connect(gain);
+                gain.connect(this.ctx.destination);
+                
+                osc.frequency.setValueAtTime(freq, now + delay);
+                gain.gain.setValueAtTime(0, now + delay);
+                gain.gain.linearRampToValueAtTime(0.08, now + delay + 0.05);
+                gain.gain.exponentialRampToValueAtTime(0.001, now + delay + 0.3);
+                
+                osc.start(now + delay);
+                osc.stop(now + delay + 0.35);
+            };
+
+            playChimeNode(523.25, 0); // C5
+            playChimeNode(659.25, 0.08); // E5
+            playChimeNode(783.99, 0.16); // G5
+        }
+
+        playBurst() {
+            if (this.muted) return;
+            this.init();
+            const osc = this.ctx.createOscillator();
+            const gain = this.ctx.createGain();
+            osc.type = 'sawtooth';
+            osc.connect(gain);
+            gain.connect(this.ctx.destination);
+            
+            osc.frequency.setValueAtTime(180, this.ctx.currentTime);
+            osc.frequency.linearRampToValueAtTime(90, this.ctx.currentTime + 0.45);
+            
+            gain.gain.setValueAtTime(0.12, this.ctx.currentTime);
+            gain.gain.linearRampToValueAtTime(0.001, this.ctx.currentTime + 0.45);
+            
+            osc.start();
+            osc.stop(this.ctx.currentTime + 0.5);
+        }
+
+        playChime() {
+            if (this.muted) return;
+            this.init();
+            const now = this.ctx.currentTime;
+            
+            const note = (freq, start, duration) => {
+                const osc = this.ctx.createOscillator();
+                const gain = this.ctx.createGain();
+                osc.type = 'sine';
+                osc.connect(gain);
+                gain.connect(this.ctx.destination);
+                
+                osc.frequency.setValueAtTime(freq, now + start);
+                gain.gain.setValueAtTime(0, now + start);
+                gain.gain.linearRampToValueAtTime(0.06, now + start + 0.05);
+                gain.gain.exponentialRampToValueAtTime(0.001, now + start + duration);
+                
+                osc.start(now + start);
+                osc.stop(now + start + duration + 0.05);
+            };
+
+            note(523.25, 0, 0.4); // C5
+            note(659.25, 0.1, 0.4); // E5
+            note(783.99, 0.2, 0.4); // G5
+            note(1046.50, 0.3, 0.6); // C6
+        }
+    }
+
+    const sfx = new SoundEngine();
+
+    // Toggle Sound Button handler
+    document.getElementById('sound-toggle-btn').addEventListener('click', () => {
+        sfx.muted = !sfx.muted;
+        const soundIcon = document.getElementById('sound-icon');
+        if (sfx.muted) {
+            soundIcon.textContent = 'volume_off';
+            document.getElementById('sound-toggle-btn').classList.add('text-on-surface-variant/40');
+        } else {
+            soundIcon.textContent = 'volume_up';
+            document.getElementById('sound-toggle-btn').classList.remove('text-on-surface-variant/40');
+            sfx.playTick();
+        }
+    });
+
+
+    // ==================== AVATARS PRESETS ====================
+    const AVATARS = [
+        { name: "Neon Ghost", url: "https://lh3.googleusercontent.com/aida-public/AB6AXuCPbjxzAh5FkZCY_nu3NxevRphunGV64g2443VywMC1fS-smMVDJ0eqoP5uR-xkzI_0aljJI5EyglkU0sIL64ZYdEdsXwCzv1vlnhuLC7H3z_MPW9cq_w5FUqQ6HOjfceCmJ_DFmP3EAN0IspsfTsc-cxfM8KPBfr-VI4aHDNMd8Rwwo0XYff2CDfAOjpqVW2kMkdnCuKEuTtbeIKmEQ6oOWz14AAVH9OFEYkojndsLdpVPO1yuOx-AzZVixGrxBQ9uFrFU4ilp6f--" },
+        { name: "Viper 99", url: "https://lh3.googleusercontent.com/aida-public/AB6AXuCby83oI4tck_gLxdndmcWKao-SaUtJ1BdDOwHUZaMQXglpXtZ1fqtc6fde3khK1WyVVVxrLUBBRSAJKNYCCIYadfTqIajXwuOAUbK2Cw8LcisjRanEv27s7SvOqSQz_ZbSn3fFNBy5na9_gzj93X24NhMH8i_eB17Oqcgy0GHbclqLLGWQEmpzrOoE1CCV4h_Hcgg8byOTzxZndSVBLsiLJN7asdDQKgoz7h_BZqU2pA-F0c3r-0_z1vlBKPXnpwxBnaQ-VIU3WCFq" },
+        { name: "Aria Flux", url: "https://lh3.googleusercontent.com/aida-public/AB6AXuDUFyt1hchKLvy3teUXjD0ury1bpwORkFG9PlOXckMHQu1BuLXJAzc6IKiApFUkR43Fyzall7zWJiDc9XNez6_9Hn_96gx8rAOusmO3JxLWMounzePC58FjmkUI0cyT6PA3gaMmZpc7FIDHRuAqwGhQ3UAKtdyNAdTGhmidJFN39oB8NwskBNu3I-9p5lw1CzObrFeyeRLWA4gtJ-2tznOfxg3_SvnyuN6xA6qqXMKwZ3e1ZV6ecboZ_Xbv1jKw2kQW002T7YX8aJSU" },
+        { name: "Card King", url: "https://lh3.googleusercontent.com/aida-public/AB6AXuC-JklfANT-Z9BMvdJr9Kv1wEN4nE4dKCv94STFUBR243sLsLfjKwwIkEMURVWQayWGmHgsB7V_0sZbstx3_F_6bTNFIFVjEDArVsu6T02t8BbUEHtEGhxqgToc_ekTd0ZxP0TYtGIK1BRlHdj_aRgNb2nfRAVdXgjNjP6-GEB8n1bNhUR2T9H9J21xbhVM5o-OxCWZIpT62W5JG4B6Rm9-OskTyvkIypxDLY73qPa1Iw0iNgUNw-Yu6IskymYQyLbi47MqYZB0UJwP" },
+        { name: "Luna 7", url: "https://lh3.googleusercontent.com/aida-public/AB6AXuBayMwbTiPOzu-wwzpwQhiKEVy09cK48cEaLwYzsLnT2VTp6IVJFWHM6O3eK-P3blJ-Be2WxOWbj_HKxSqqC6tChYAJhBsFMqj4dpPWk60JtAC-W_yPNKb6BOA1PMNUdbGdDJ6CZqjHdidP0P_SYPcvAZ8QNMdaWZxfFsZXf5LUAX7dsSjjmDp9Ntw89vlFa9OlkAdEqTzQEyuYdTH2fZQvK5ziIpDPJhsIoVwf3a-9xXq6EvYWNC6AV73mcV_s-4caCu5Pir7s3vC0" },
+        { name: "Ace King", url: "https://lh3.googleusercontent.com/aida-public/AB6AXuCs394ZHVhhVlPFvJoLP04axrkwT56yhfZQsWk2intKH1gVR7RaucsBlAKg7LK-8xyLJzP7pZPYmpvYQerB7y_dVjQPKGXv88fBhs4OnQwcK0cdLCRV7CFw9L3K37TMl9axmtf3Zw-3-6RmMkFl0dpqR3pRixnaSY5uvCfRYIW1EZiBwsbaLQnE5uDsFrVVj_cMvCr7FRlAgP-04-F62pnVCvLaqwScZUz7urpsKGk3lrw-sfiWIve3tQQt4-NGRwAY-pmQAUn-4LQh" },
+        { name: "Lucky J", url: "https://lh3.googleusercontent.com/aida-public/AB6AXuBM8S45GipDblpLeUtIM1yxMundt6RSd9DuB32kgYWBAnqxtz_qx4uhjAdQc6dyp1gKlDAaCDDJmdhvl2jnwf4yL_RWPd9bHEtTYfclwkgY1kM_iargkbJVeFfB7eSudnSDXYiuXriAxmMJxLKSkDVtkm9M7NhilXGDWhCEsEAHZxHFiq9bI7Yz98EyjqgVHtifFJN49dtfNHaRv9QYjq2pbEe1YgrfzE19SjVGM6V7Du_1wxJLv2CHb4hdrXDeMVaxq3opZLPvU0k0" }
+    ];
+
+    let currentAvatarIndex = 0;
+
+
+    // ==================== GAME STATE CONFIG ====================
+    const SUITS = [
+        { id: "HEARTS", symbol: "favorite", color: "text-accent-crimson" },
+        { id: "PENTAGONS", symbol: "pentagon", color: "text-surface-dim" },
+        { id: "CLOUDS", symbol: "cloud", color: "text-surface-dim" },
+        { id: "PADELS", symbol: "spa", color: "text-surface-dim" }
+    ];
+
+    const VALUES = ["2", "3", "4", "5", "6", "7", "8", "9", "10", "J", "Q", "K", "A"];
+    const VALUE_POWER = { "2": 2, "3": 3, "4": 4, "5": 5, "6": 6, "7": 7, "8": 8, "9": 9, "10": 10, "J": 11, "Q": 12, "K": 13, "A": 14 };
+
+    // Standard Player Setup
+    let players = [
+        { id: "p1", name: "You", avatar: "", score: 0, bid: 0, won: 0, hand: [], currentCard: null, isBot: false },
+        { id: "p2", name: "Viper_99", avatar: AVATARS[1].url, score: 0, bid: 0, won: 0, hand: [], currentCard: null, isBot: true },
+        { id: "p3", name: "Aria_Flux", avatar: AVATARS[2].url, score: 0, bid: 0, won: 0, hand: [], currentCard: null, isBot: true },
+        { id: "p4", name: "CardKing", avatar: AVATARS[3].url, score: 0, bid: 0, won: 0, hand: [], currentCard: null, isBot: true },
+        { id: "p5", name: "Luna_7", avatar: AVATARS[4].url, score: 0, bid: 0, won: 0, hand: [], currentCard: null, isBot: true }
+    ];
+
+    const ROUNDS_CARDS = [3, 5, 8, 10]; // 4 Rounds tournament
+    let currentRoundIndex = 0; // 0 to 3
+    let trumpSuit = SUITS[0]; // Hearts is default
+    let gameHistory = []; // Historical bids & tricks won
+    let activePlayerIndex = 0; // Whose turn
+    let firstPlayerIndex = 0; // Who leads the trick
+    let selectedBid = 0;
+    let turnTimer = null;
+    let turnTimeLeft = 100; // Percentage
+    let playState = "idle"; // idle, bidding, playing, trick-end, round-end, game-over
+
+    // ==================== LOBBY LOGIC ====================
+    function changeAvatar(dir) {
+        currentAvatarIndex = (currentAvatarIndex + dir + AVATARS.length) % AVATARS.length;
+        document.getElementById('lobby-avatar-preview').src = AVATARS[currentAvatarIndex].url;
+        document.getElementById('avatar-label').textContent = AVATARS[currentAvatarIndex].name;
+        sfx.playTick();
+    }
+
+    function goToLobby() {
+        showScreen('screen-lobby');
+        sfx.playTick();
+    }
+
+    function startGameFromLobby() {
+        const inputName = document.getElementById('player-name-input').value.trim();
+        players[0].name = inputName || "Neon_Ghost";
+        players[0].avatar = AVATARS[currentAvatarIndex].url;
+        
+        // Re-inject user info into HTML elements
+        document.getElementById('player-avatar-img').src = players[0].avatar;
+        
+        startNewGame();
+    }
+
+    // Toggle screen display
+    function showScreen(screenId) {
+        document.querySelectorAll('.screen').forEach(scr => {
+            scr.classList.remove('active');
+        });
+        const targetScreen = document.getElementById(screenId);
+        if (targetScreen) {
+            targetScreen.classList.add('active');
+            if (screenId === 'screen-game') {
+                document.getElementById('screen-game').classList.add('flex');
+            } else {
+                document.getElementById('screen-game').classList.remove('flex');
+            }
+        }
+    }
+
+
+    // ==================== GAME CYCLE LOOPS ====================
+    function startNewGame() {
+        // Reset scores and histories
+        players.forEach(p => {
+            p.score = 0;
+            p.bid = 0;
+            p.won = 0;
+        });
+        currentRoundIndex = 0;
+        gameHistory = [];
+        firstPlayerIndex = 0;
+        
+        showScreen('screen-game');
+        
+        // Setup initial round
+        startRound();
+    }
+
+    function startRound() {
+        playState = "bidding";
+        const cardsCount = ROUNDS_CARDS[currentRoundIndex];
+        
+        // Update Labels
+        document.getElementById('round-num-label').textContent = `ROUND ${currentRoundIndex + 1}`;
+        document.getElementById('round-cards-label').textContent = `${cardsCount} CARDS`;
+        
+        // Pick Trump Suit
+        trumpSuit = SUITS[Math.floor(Math.random() * SUITS.length)];
+        document.getElementById('trump-name').textContent = trumpSuit.id;
+        document.getElementById('trump-icon').textContent = trumpSuit.symbol;
+        document.getElementById('trump-icon').className = `material-symbols-outlined text-3xl md:text-4xl ${trumpSuit.color}`;
+        
+        // Clear center trick area
+        document.getElementById('center-trick-area').innerHTML = `
+            <div class="text-center text-xs text-on-surface-variant/40 font-label-mono uppercase pointer-events-none select-none" id="trick-placeholder">
+                Trick Cards
+            </div>
+        `;
+        
+        // Reset player tricks won and cards
+        players.forEach(p => {
+            p.won = 0;
+            p.bid = 0;
+            p.currentCard = null;
+        });
+        
+        // Log round start
+        addLog(`--- Round ${currentRoundIndex + 1} Started ---`);
+        addLog(`Trump suit is ${trumpSuit.id}.`);
+
+        // Draw and Deal Deck
+        dealCards(cardsCount);
+        
+        // Play Deal SFX
+        sfx.playDeal();
+
+        // Render everything
+        updateUIAvatars();
+        updateUIScores();
+        updateUIHand();
+        
+        // Show Bidding Modal
+        openBiddingModal();
+    }
+
+    // Generate, Shuffle, and Deal Cards
+    function dealCards(cardsCount) {
+        let deck = [];
+        SUITS.forEach(suit => {
+            VALUES.forEach(val => {
+                deck.push({ suit: suit.id, value: val });
+            });
+        });
+        
+        // Shuffle (Fisher-Yates)
+        for (let i = deck.length - 1; i > 0; i--) {
+            const j = Math.floor(Math.random() * (i + 1));
+            [deck[i], deck[j]] = [deck[j], deck[i]];
+        }
+        
+        // Deal to players
+        players.forEach(p => {
+            p.hand = [];
+            for (let c = 0; c < cardsCount; c++) {
+                p.hand.push(deck.pop());
+            }
+            
+            // Sort player hand: by suit, then value power
+            p.hand.sort((a, b) => {
+                if (a.suit !== b.suit) {
+                    return a.suit.localeCompare(b.suit);
+                }
+                return VALUE_POWER[a.value] - VALUE_POWER[b.value];
+            });
+        });
+    }
+
+    // Log printer
+    function addLog(text) {
+        const logsContainer = document.getElementById('game-logs');
+        const p = document.createElement('p');
+        p.textContent = text;
+        logsContainer.appendChild(p);
+        logsContainer.scrollTop = logsContainer.scrollHeight;
+    }
+
+    // Bidding Modal controls
+    function openBiddingModal() {
+        const cardsCount = ROUNDS_CARDS[currentRoundIndex];
+        const bidSubtitle = document.getElementById('bid-modal-subtitle');
+        bidSubtitle.textContent = `How many tricks will you win in Round ${currentRoundIndex + 1} (${cardsCount} cards)?`;
+        
+        const grid = document.getElementById('bid-buttons-grid');
+        grid.innerHTML = '';
+        
+        // Create Bidding buttons
+        selectedBid = 0; // Default
+        for (let i = 0; i <= cardsCount; i++) {
+            const btn = document.createElement('button');
+            btn.className = `aspect-square flex items-center justify-center font-label-mono text-lg border border-outline-variant/30 rounded-xl hover:border-primary hover:bg-primary/10 transition-all active:scale-95 text-on-background`;
+            btn.textContent = i;
+            if (i === 0) {
+                btn.className = `aspect-square flex items-center justify-center font-label-mono text-lg border border-accent-gold bg-accent-gold/20 text-accent-gold rounded-xl ring-2 ring-accent-gold/40`;
+            }
+            btn.onclick = () => {
+                sfx.playTick();
+                // De-select old buttons
+                grid.querySelectorAll('button').forEach(b => {
+                    b.className = `aspect-square flex items-center justify-center font-label-mono text-lg border border-outline-variant/30 rounded-xl hover:border-primary hover:bg-primary/10 transition-all active:scale-95 text-on-background`;
+                });
+                // Select this button
+                btn.className = `aspect-square flex items-center justify-center font-label-mono text-lg border border-accent-gold bg-accent-gold/20 text-accent-gold rounded-xl ring-2 ring-accent-gold/40`;
+                selectedBid = i;
+            };
+            grid.appendChild(btn);
+        }
+        
+        // Set up bots bids immediately in backend (hidden)
+        simulateBotsBidding();
+        
+        // Compute total table bid estimation for modal footer
+        let sumBids = selectedBid;
+        players.forEach(p => {
+            if (p.isBot) sumBids += p.bid;
+        });
+        document.getElementById('bids-sum-text').textContent = `Total Bids on Table: ${sumBids}`;
+        
+        // Re-calculate sum bids when user changes selection
+        grid.addEventListener('click', () => {
+            let totalBids = selectedBid;
+            players.forEach(p => {
+                if (p.isBot) totalBids += p.bid;
+            });
+            document.getElementById('bids-sum-text').textContent = `Total Bids on Table: ${totalBids}`;
+        });
+
+        document.getElementById('bidding-modal').classList.remove('hidden');
+    }
+
+    function simulateBotsBidding() {
+        players.forEach(p => {
+            if (p.isBot) {
+                // Compute smart bidding heuristic
+                let expectedTricks = 0;
+                p.hand.forEach(c => {
+                    let score = 0;
+                    if (c.suit === trumpSuit.id) {
+                        score += 3; // Trump cards are highly valuable
+                    }
+                    if (VALUE_POWER[c.value] >= 11) { // J, Q, K, A
+                        score += 2;
+                    }
+                    if (VALUE_POWER[c.value] >= 14) { // Ace
+                        score += 1;
+                    }
+                    
+                    if (score >= 4) {
+                        expectedTricks++;
+                    }
+                });
+                
+                // Add some variety/randomness to AI bids
+                if (Math.random() < 0.15) {
+                    expectedTricks = Math.max(0, expectedTricks - 1);
+                } else if (Math.random() < 0.15) {
+                    expectedTricks = Math.min(p.hand.length, expectedTricks + 1);
+                }
+                
+                p.bid = expectedTricks;
+            }
+        });
+    }
+
+    function confirmSelectedBid() {
+        document.getElementById('bidding-modal').classList.add('hidden');
+        players[0].bid = selectedBid;
+        
+        addLog(`You bid ${selectedBid} tricks.`);
+        players.forEach(p => {
+            if (p.isBot) {
+                addLog(`${p.name} bid ${p.bid} tricks.`);
+            }
+        });
+        
+        playState = "playing";
+        
+        // Show bids on UI
+        updateUIAvatars();
+        updateUIScores();
+        
+        // Start Trick cycle
+        activePlayerIndex = firstPlayerIndex;
+        startTrick();
+    }
+
+    // ==================== TRICK CYCLE LOGIC ====================
+    function startTrick() {
+        // Clear cards currently on center table
+        document.getElementById('center-trick-area').innerHTML = `
+            <div class="text-center text-xs text-on-surface-variant/40 font-label-mono uppercase pointer-events-none select-none animate-pulse" id="trick-placeholder">
+                Lead: ${players[activePlayerIndex].name}
+            </div>
+        `;
+        
+        // Reset player cards
+        players.forEach(p => {
+            p.currentCard = null;
+        });
+        
+        // Cycle active turn
+        runTurn();
+    }
+
+    function runTurn() {
+        updateUIAvatars();
+        
+        const activePlayer = players[activePlayerIndex];
+        
+        if (!activePlayer.isBot) {
+            // Player's Turn: start timer bar and wait for card click
+            document.getElementById('turn-badge').className = "font-label-mono text-[10px] md:text-xs font-bold bg-primary text-on-primary px-3 py-0.5 rounded-full shadow-lg block animate-pulse";
+            document.getElementById('turn-badge').textContent = "YOUR TURN";
+            document.getElementById('player-active-circle').className = "w-16 h-16 md:w-18 md:h-18 rounded-full border-4 border-primary player-active-ring bg-surface-container overflow-hidden z-10";
+            
+            // Enable Timer bar
+            startTimer();
+        } else {
+            // Bot's Turn: simulate thinking and select card
+            document.getElementById('turn-badge').className = "font-label-mono text-[10px] md:text-xs font-bold bg-surface-container-highest text-on-surface-variant px-3 py-0.5 rounded-full block";
+            document.getElementById('turn-badge').textContent = `${activePlayer.name}'s TURN`;
+            document.getElementById('player-active-circle').className = "w-16 h-16 md:w-18 md:h-18 rounded-full border-4 border-outline-variant bg-surface-container overflow-hidden z-10";
+            
+            stopTimer();
+            
+            // Show bot status toast
+            const toast = document.getElementById('table-toast');
+            toast.textContent = `${activePlayer.name} is thinking...`;
+            toast.classList.remove('hidden');
+            
+            setTimeout(() => {
+                toast.classList.add('hidden');
+                botPlayCard(activePlayer);
+            }, 800 + Math.random() * 800);
+        }
+    }
+
+    // Player Play Card Trigger (from UI card clicks)
+    function playerPlayCard(cardIndex) {
+        if (playState !== "playing" || players[activePlayerIndex].isBot) return;
+        
+        const card = players[0].hand[cardIndex];
+        
+        // Check if card matches suit leading rule
+        if (!isPlayValid(players[0], card)) {
+            // Flash a warning/shake hand
+            sfx.playBurst(); // negative sound
+            showTemporaryToast("Must follow the lead suit!");
+            return;
+        }
+        
+        // Valid play: remove card and play it
+        players[0].hand.splice(cardIndex, 1);
+        players[0].currentCard = card;
+        
+        stopTimer();
+        sfx.playCardPlay();
+        
+        // Render played card in trick center
+        renderPlayedCardInCenter(players[0].id, card);
+        updateUIHand();
+        
+        // Advance Turn
+        advanceTurn();
+    }
+
+    function botPlayCard(bot) {
+        let cardToPlay = null;
+        
+        // Determine led suit
+        const ledCard = getLedCard();
+        const ledSuit = ledCard ? ledCard.suit : null;
+        
+        // Filter valid cards
+        let validCards = bot.hand.filter(c => isPlayValid(bot, c));
+        
+        // AI Logic Heuristic:
+        if (ledSuit) {
+            // Must follow suit (or play other suit if they have none)
+            // If they want to win: play highest valid card
+            // If they want to lose: play lowest valid card
+            
+            const bidNeeded = bot.bid - bot.won;
+            
+            if (bidNeeded > 0) {
+                // Try to win the trick: Sort descending
+                validCards.sort((a, b) => VALUE_POWER[b.value] - VALUE_POWER[a.value]);
+                cardToPlay = validCards[0];
+            } else {
+                // Try to lose the trick: Sort ascending
+                validCards.sort((a, b) => VALUE_POWER[a.value] - VALUE_POWER[b.value]);
+                cardToPlay = validCards[0];
+            }
+        } else {
+            // Leading the trick! Can play anything.
+            // If they want to win: lead highest card or trump card
+            // If they want to lose: lead a low non-trump card
+            const bidNeeded = bot.bid - bot.won;
+            
+            if (bidNeeded > 0) {
+                // Try to win: Play highest card
+                bot.hand.sort((a, b) => VALUE_POWER[b.value] - VALUE_POWER[a.value]);
+                cardToPlay = bot.hand[0];
+            } else {
+                // Try to lose: Play lowest card
+                bot.hand.sort((a, b) => VALUE_POWER[a.value] - VALUE_POWER[b.value]);
+                cardToPlay = bot.hand[0];
+            }
+        }
+        
+        // Splice card from bot hand
+        const idx = bot.hand.indexOf(cardToPlay);
+        if (idx > -1) {
+            bot.hand.splice(idx, 1);
+        } else {
+            // Fallback
+            cardToPlay = bot.hand.pop();
+        }
+        
+        bot.currentCard = cardToPlay;
+        sfx.playCardPlay();
+        
+        renderPlayedCardInCenter(bot.id, cardToPlay);
+        
+        // Advance Turn
+        advanceTurn();
+    }
+
+    // Helper: is card choice legal according to suit leading rules?
+    function isPlayValid(player, card) {
+        const ledCard = getLedCard();
+        if (!ledCard) return true; // Leading the trick, any card is valid
+        
+        const ledSuit = ledCard.suit;
+        if (card.suit === ledSuit) return true; // Matches led suit
+        
+        // Check if player has any card of led suit
+        const hasLedSuit = player.hand.some(c => c.suit === ledSuit);
+        return !hasLedSuit; // Valid only if player does NOT have led suit
+    }
+
+    function getLedCard() {
+        // Find first card played in this trick
+        // Active trick cards are placed by cycle
+        // Search index order starting from firstPlayerIndex
+        let searchIndex = firstPlayerIndex;
+        for (let i = 0; i < players.length; i++) {
+            const idx = (searchIndex + i) % players.length;
+            if (players[idx].currentCard) {
+                return players[idx].currentCard;
+            }
+        }
+        return null;
+    }
+
+    function renderPlayedCardInCenter(playerId, card) {
+        const center = document.getElementById('center-trick-area');
+        
+        // Remove placeholder text if it's the first card
+        const placeholder = document.getElementById('trick-placeholder');
+        if (placeholder) placeholder.remove();
+        
+        // Draw the fanned playing card
+        const cardDiv = document.createElement('div');
+        
+        // Different rotation and translate offsets depending on player slot to fan them beautifully in center
+        let rotateClass = "rotate-0";
+        let translateClass = "translate-0";
+        
+        if (playerId === "p1") {
+            rotateClass = "rotate-0";
+            translateClass = "translate-y-8";
+        } else if (playerId === "p2") {
+            rotateClass = "-rotate-12";
+            translateClass = "-translate-x-6 -translate-y-4";
+        } else if (playerId === "p3") {
+            rotateClass = "rotate-12";
+            translateClass = "translate-x-6 -translate-y-4";
+        } else if (playerId === "p4") {
+            rotateClass = "rotate-45";
+            translateClass = "translate-x-6 translate-y-2";
+        } else if (playerId === "p5") {
+            rotateClass = "-rotate-45";
+            translateClass = "-translate-x-6 translate-y-2";
+        }
+        
+        const isHearts = card.suit === "HEARTS";
+        const suitSymbolObj = SUITS.find(s => s.id === card.suit);
+        const colorClass = isHearts ? "text-accent-crimson" : "text-surface-dim";
+        
+        cardDiv.className = `absolute w-16 h-22 md:w-20 md:h-28 bg-white rounded-lg border-2 border-surface-dim card-shadow ${rotateClass} ${translateClass} flex flex-col p-1.5 md:p-2 z-10 card-deal-anim`;
+        cardDiv.innerHTML = `
+            <div class="flex flex-col items-start leading-none">
+                <span class="${colorClass} font-black text-sm md:text-base">${card.value}</span>
+                <span class="material-symbols-outlined ${colorClass} text-xs md:text-sm select-none" style="font-variation-settings: 'FILL' 1;">${suitSymbolObj.symbol}</span>
+            </div>
+            <span class="material-symbols-outlined ${colorClass} self-center my-auto text-2xl md:text-3xl select-none" style="font-variation-settings: 'FILL' 1;">${suitSymbolObj.symbol}</span>
+        `;
+        
+        // Attach card player source data
+        cardDiv.dataset.playerId = playerId;
+        center.appendChild(cardDiv);
+    }
+
+    function advanceTurn() {
+        activePlayerIndex = (activePlayerIndex + 1) % players.length;
+        
+        // Check if all players played in this trick
+        const allPlayed = players.every(p => p.currentCard !== null);
+        
+        if (allPlayed) {
+            playState = "trick-end";
+            setTimeout(resolveTrick, 1500);
+        } else {
+            runTurn();
+        }
+    }
+
+    function resolveTrick() {
+        // Calculate winner of the trick
+        let winnerIndex = firstPlayerIndex;
+        let bestCard = players[winnerIndex].currentCard;
+        
+        for (let i = 1; i < players.length; i++) {
+            const idx = (firstPlayerIndex + i) % players.length;
+            const card = players[idx].currentCard;
+            
+            let isBetter = false;
+            
+            // Check Trump conditions
+            if (card.suit === trumpSuit.id && bestCard.suit !== trumpSuit.id) {
+                isBetter = true;
+            } else if (card.suit === bestCard.suit) {
+                isBetter = VALUE_POWER[card.value] > VALUE_POWER[bestCard.value];
+            } else if (card.suit === trumpSuit.id && bestCard.suit === trumpSuit.id) {
+                isBetter = VALUE_POWER[card.value] > VALUE_POWER[bestCard.value];
+            }
+            
+            if (isBetter) {
+                winnerIndex = idx;
+                bestCard = card;
+            }
+        }
+        
+        const winner = players[winnerIndex];
+        winner.won++;
+        
+        sfx.playWinTrick();
+        addLog(`${winner.name} won the trick with ${bestCard.value} of ${bestCard.suit}.`);
+        
+        // Highlight winner avatar in table
+        const winnerAvatar = document.querySelector(`#table-player-${winner.id} .avatar-ring`) || document.getElementById('player-active-circle');
+        if (winnerAvatar) {
+            winnerAvatar.style.borderColor = "#F59E0B"; // Gold glow highlight
+            winnerAvatar.style.boxShadow = "0 0 20px #F59E0B";
+        }
+        
+        // Center Toast notification
+        showTemporaryToast(`${winner.name} Wins Trick!`);
+        
+        // Set new lead player for next trick
+        firstPlayerIndex = winnerIndex;
+        
+        setTimeout(() => {
+            // Remove gold glows
+            document.querySelectorAll('.avatar-ring').forEach(r => {
+                r.style.borderColor = '';
+                r.style.boxShadow = '';
+            });
+            const p1Ring = document.getElementById('player-active-circle');
+            if (p1Ring) {
+                p1Ring.style.borderColor = '';
+                p1Ring.style.boxShadow = '';
+            }
+
+            // Animate trick cards sweeping off center towards the winner
+            const centerCards = document.querySelectorAll('#center-trick-area div.absolute');
+            centerCards.forEach(c => {
+                c.style.transform = `translate(0, 0) scale(0)`;
+                c.style.opacity = '0';
+            });
+            
+            setTimeout(() => {
+                // Clear state
+                players.forEach(p => p.currentCard = null);
+                updateUIAvatars();
+                updateUIScores();
+                
+                // Check if players have cards remaining in hand
+                if (players[0].hand.length > 0) {
+                    playState = "playing";
+                    activePlayerIndex = firstPlayerIndex;
+                    startTrick();
+                } else {
+                    // Round finished
+                    resolveRound();
+                }
+            }, 500);
+
+        }, 1200);
+    }
+
+    // ==================== ROUND RESOLVE & SCORE Math ====================
+    function resolveRound() {
+        playState = "round-end";
+        addLog(`--- Round ${currentRoundIndex + 1} Results ---`);
+        
+        let roundResultsText = [];
+        let playerOldScores = players.map(p => p.score);
+        
+        players.forEach(p => {
+            const hit = p.bid === p.won;
+            let roundPoints = 0;
+            if (hit) {
+                roundPoints = 10 + (11 * p.bid);
+                p.score += roundPoints;
+                addLog(`${p.name} HIT bid! (+${roundPoints} pts).`);
+            } else {
+                addLog(`${p.name} BURST! (Bid: ${p.bid}, Won: ${p.won}). (+0 pts)`);
+            }
+            
+            roundResultsText.push({
+                name: p.name,
+                hit: hit,
+                bid: p.bid,
+                won: p.won,
+                points: roundPoints
+            });
+        });
+
+        // Save history for chart and standings table
+        gameHistory.push({
+            round: currentRoundIndex + 1,
+            tricksCount: ROUNDS_CARDS[currentRoundIndex],
+            playersData: players.map((p, idx) => ({
+                id: p.id,
+                name: p.name,
+                bid: p.bid,
+                won: p.won,
+                scoreDelta: roundResultsText[idx].points,
+                totalScore: p.score
+            }))
+        });
+
+        // Open Round Summary Modal (Overlay overlay)
+        showRoundSummaryOverlay(roundResultsText, playerOldScores);
+    }
+
+    function showRoundSummaryOverlay(results, oldScores) {
+        // Create dynamic modal
+        const wrapper = document.createElement('div');
+        wrapper.id = 'round-summary-overlay';
+        wrapper.className = 'fixed inset-0 z-[100] flex items-center justify-center bg-background/85 backdrop-blur-md transition-all duration-300';
+        
+        let rowsHtml = '';
+        results.forEach(res => {
+            const stateText = res.hit ? `<span class="text-accent-gold font-bold font-label-mono">HIT</span>` : `<span class="text-accent-crimson font-bold font-label-mono">BURST</span>`;
+            const ptsClass = res.hit ? 'text-accent-gold font-bold' : 'text-on-surface-variant/40';
+            rowsHtml += `
+                <div class="flex items-center justify-between border-b border-outline-variant/10 py-3 text-sm">
+                    <span class="font-bold text-on-surface">${res.name}</span>
+                    <div class="flex items-center gap-6">
+                        <span class="text-xs font-label-mono text-on-surface-variant">Bid: ${res.bid} | Won: ${res.won}</span>
+                        <span class="text-xs">${stateText}</span>
+                        <span class="font-label-mono text-right w-14 ${ptsClass}">+${res.points}</span>
+                    </div>
+                </div>
+            `;
+        });
+
+        const playerHit = results[0].hit;
+        if (playerHit) {
+            sfx.playWinTrick();
+        } else {
+            sfx.playBurst();
+        }
+
+        const isLastRound = currentRoundIndex >= ROUNDS_CARDS.length - 1;
+        const buttonText = isLastRound ? "Show Final Standings" : `Proceed to Round ${currentRoundIndex + 2}`;
+
+        wrapper.innerHTML = `
+            <div class="w-full max-w-lg glass-panel p-8 rounded-3xl border border-primary/20 shadow-2xl flex flex-col mx-4">
+                <div class="text-center mb-6">
+                    <h3 class="font-display-xl text-2xl md:text-3xl text-primary font-black italic tracking-tighter uppercase mb-1">Round ${currentRoundIndex + 1} Summary</h3>
+                    <p class="font-body-lg text-xs text-on-surface-variant uppercase tracking-wider">Tournament Standing delta</p>
+                </div>
+                
+                <div class="space-y-1 mb-8">
+                    ${rowsHtml}
+                </div>
+
+                <button id="summary-next-btn" class="bg-gradient-to-r from-primary to-on-primary-container text-on-primary font-bold py-4 rounded-xl uppercase tracking-widest active:scale-95 transition-transform w-full text-center shadow-lg shadow-primary/20">
+                    ${buttonText}
+                </button>
+            </div>
+        `;
+
+        document.body.appendChild(wrapper);
+
+        document.getElementById('summary-next-btn').onclick = () => {
+            wrapper.remove();
+            sfx.playTick();
+            
+            if (isLastRound) {
+                // End Tournament, show results
+                showFinalResultsScreen();
+            } else {
+                currentRoundIndex++;
+                startRound();
+            }
+        };
+    }
+
+
+    // ==================== END GAME RESULTS LOGIC ====================
+    function showFinalResultsScreen() {
+        showScreen('screen-results');
+        sfx.playChime();
+        
+        // Sort players by total score to determine podium places
+        let finalStandings = [...players].sort((a, b) => b.score - a.score);
+        
+        // 1st Place
+        const winner = finalStandings[0];
+        document.getElementById('podium-name-1').textContent = winner.name;
+        document.getElementById('podium-score-1').textContent = `${winner.score} PTS`;
+        document.getElementById('podium-img-1').src = winner.avatar;
+        
+        // 2nd Place
+        const runnerUp = finalStandings[1];
+        document.getElementById('podium-name-2').textContent = runnerUp.name;
+        document.getElementById('podium-score-2').textContent = `${runnerUp.score} PTS`;
+        document.getElementById('podium-img-2').src = runnerUp.avatar;
+        
+        // 3rd Place
+        const thirdPlace = finalStandings[2];
+        document.getElementById('podium-name-3').textContent = thirdPlace.name;
+        document.getElementById('podium-score-3').textContent = `${thirdPlace.score} PTS`;
+        document.getElementById('podium-img-3').src = thirdPlace.avatar;
+        
+        // Victory Headline Adjustments
+        const resultHeadline = document.getElementById('results-headline');
+        if (winner.id === "p1") {
+            resultHeadline.textContent = "VICTORY DECLARED";
+            resultHeadline.className = "font-display-xl text-4xl md:text-6xl uppercase italic font-black text-transparent bg-clip-text bg-gradient-to-r from-accent-gold to-tertiary tracking-tighter";
+            startConfetti();
+        } else {
+            resultHeadline.textContent = "TOURNAMENT FINISHED";
+            resultHeadline.className = "font-display-xl text-4xl md:text-6xl uppercase italic font-black text-transparent bg-clip-text bg-gradient-to-r from-tertiary to-secondary tracking-tighter";
+            stopConfetti();
+        }
+
+        // Render Last Round Calculations Panel
+        const userLastRound = gameHistory[gameHistory.length - 1].playersData[0];
+        const userHitLastRound = userLastRound.bid === userLastRound.won;
+        document.getElementById('calc-bid').textContent = userLastRound.bid;
+        
+        const calcTitle = document.getElementById('calc-result-title');
+        const calcBonus = document.getElementById('final-bonus');
+        
+        if (userHitLastRound) {
+            calcTitle.textContent = "Burst Bonus";
+            calcTitle.className = "font-label-mono text-xs text-tertiary uppercase mb-1";
+            calcBonus.className = "font-headline-md text-xl md:text-2xl text-tertiary";
+            // Animate counting up
+            animateLastRoundScore(10 + (11 * userLastRound.bid));
+        } else {
+            calcTitle.textContent = "BURST (MISS)";
+            calcTitle.className = "font-label-mono text-xs text-accent-crimson uppercase mb-1 font-bold";
+            calcBonus.className = "font-headline-md text-xl md:text-2xl text-accent-crimson";
+            calcBonus.textContent = "+0";
+        }
+
+        // Populate Standings Table
+        const tbody = document.getElementById('results-table-body');
+        tbody.innerHTML = '';
+        
+        finalStandings.forEach((p, rankIndex) => {
+            // Compute stats: bids hits rate
+            let hitsCount = 0;
+            let totalBidsSum = 0;
+            
+            gameHistory.forEach(h => {
+                const pData = h.playersData.find(pd => pd.id === p.id);
+                if (pData.bid === pData.won) {
+                    hitsCount++;
+                }
+                totalBidsSum += pData.bid;
+            });
+            
+            const hitRate = Math.round((hitsCount / gameHistory.length) * 100);
+            
+            const initials = p.name.substring(0, 2).toUpperCase();
+            
+            let badgeBgColor = "bg-primary/20 text-primary";
+            if (rankIndex === 0) badgeBgColor = "bg-tertiary/20 text-tertiary";
+            else if (rankIndex === 1) badgeBgColor = "bg-outline/25 text-on-surface";
+            else if (rankIndex === 2) badgeBgColor = "bg-secondary-container/30 text-secondary";
+            
+            const tr = document.createElement('tr');
+            tr.className = "hover:bg-surface-container-high/40 transition-colors";
+            tr.innerHTML = `
+                <td class="px-6 py-4 flex items-center gap-3">
+                    <div class="w-8 h-8 rounded-full ${badgeBgColor} flex items-center justify-center font-bold text-xs">${initials}</div>
+                    <span class="${p.id === 'p1' ? 'font-bold text-accent-gold' : ''}">${p.name} ${p.id === 'p1' ? '(You)' : ''}</span>
+                </td>
+                <td class="px-6 py-4 font-label-mono">${hitRate}%</td>
+                <td class="px-6 py-4">${totalBidsSum} tricks</td>
+                <td class="px-6 py-4 text-right font-label-mono font-bold ${rankIndex === 0 ? 'text-tertiary' : 'text-on-surface'}">${p.score}</td>
+            `;
+            tbody.appendChild(tr);
+        });
+
+        // Render Performance Delta Chart (Target vs Actual)
+        renderPerformanceChart();
+    }
+
+    function animateLastRoundScore(target) {
+        const bonusEl = document.getElementById('final-bonus');
+        let current = 0;
+        const duration = 1200; // ms
+        const startTime = performance.now();
+
+        function update(currentTime) {
+            const elapsed = currentTime - startTime;
+            const progress = Math.min(elapsed / duration, 1);
+            
+            // Ease out cubic
+            const easedProgress = 1 - Math.pow(1 - progress, 3);
+            current = Math.floor(easedProgress * target);
+            
+            bonusEl.textContent = `+${current}`;
+            bonusEl.classList.add('score-anim');
+            setTimeout(() => bonusEl.classList.remove('score-anim'), 100);
+
+            if (progress < 1) {
+                requestAnimationFrame(update);
+            }
+        }
+        requestAnimationFrame(update);
+    }
+
+    function renderPerformanceChart() {
+        const chartContainer = document.getElementById('chart-bars-container');
+        chartContainer.innerHTML = '';
+        
+        // For each of the 4 rounds
+        gameHistory.forEach((h, rIdx) => {
+            const userData = h.playersData[0]; // User (You)
+            const targetBid = userData.bid;
+            const actualWon = userData.won;
+            
+            // Compute percentage heights (max cards is 10)
+            const maxVal = Math.max(10, targetBid, actualWon);
+            const targetHeightPercent = Math.max(5, (targetBid / maxVal) * 100);
+            const wonHeightPercent = Math.max(5, (actualWon / maxVal) * 100);
+            
+            const isHit = targetBid === actualWon;
+            const wonBarBg = isHit ? 'bg-tertiary' : 'bg-accent-crimson';
+            const wonGlow = isHit ? 'shadow-[0_0_12px_rgba(255,185,95,0.45)]' : 'shadow-[0_0_12px_rgba(239,68,68,0.45)]';
+            
+            const barGroup = document.createElement('div');
+            barGroup.className = "flex flex-col items-center flex-1 group h-full justify-end";
+            barGroup.innerHTML = `
+                <div class="w-full flex flex-col gap-1.5 items-center justify-end flex-1 max-w-[42px]">
+                    <!-- Target Bid Bar -->
+                    <div class="w-full bg-primary-container border border-primary/30 rounded-t-md hover:opacity-85 transition-all" style="height: ${targetHeightPercent}%" title="Bid Target: ${targetBid}"></div>
+                    <!-- Actual Won Bar -->
+                    <div class="w-full ${wonBarBg} rounded-t-md ${wonGlow} hover:opacity-85 transition-all" style="height: ${wonHeightPercent}%" title="Actual Won: ${actualWon}"></div>
+                </div>
+                <span class="font-label-mono text-[10px] mt-2 ${isHit ? 'text-tertiary font-bold' : 'text-on-surface-variant'}">R${h.round}</span>
+            `;
+            chartContainer.appendChild(barGroup);
+        });
+    }
+
+
+    // ==================== RENDERING UTILITIES ====================
+    function updateUIAvatars() {
+        players.forEach(p => {
+            if (p.isBot) {
+                // Bot HTML structures are statically hardcoded on DOM (Luna_7, Viper_99, Aria_Flux, CardKing)
+                let selectorPrefix = "";
+                if (p.id === "p2") selectorPrefix = "table-player-p2";
+                else if (p.id === "p3") selectorPrefix = "table-player-p3";
+                else if (p.id === "p4") selectorPrefix = "table-player-p4";
+                else if (p.id === "p5") selectorPrefix = "table-player-p5";
+                
+                const wrapper = document.getElementById(selectorPrefix);
+                if (wrapper) {
+                    wrapper.querySelector('.player-avatar-img').src = p.avatar;
+                    wrapper.querySelector('.player-name').textContent = p.name;
+                    wrapper.querySelector('.bot-score-mini').textContent = p.score;
+                    wrapper.querySelector('.bid-text').textContent = (playState === "bidding" ? "-" : p.bid);
+                    wrapper.querySelector('.won-text').textContent = p.won;
+                    
+                    // Show highlight ring if active turn
+                    const ring = wrapper.querySelector('.avatar-ring');
+                    if (playState === "playing" && players[activePlayerIndex].id === p.id) {
+                        ring.className = "w-14 h-14 md:w-16 md:h-16 rounded-full border-2 border-primary player-active-ring bg-surface-container overflow-hidden avatar-ring";
+                    } else {
+                        ring.className = "w-14 h-14 md:w-16 md:h-16 rounded-full border-2 border-outline-variant bg-surface-container overflow-hidden avatar-ring";
+                    }
+                }
+            } else {
+                // User Avatar Turn Circle highlight
+                const turnBadge = document.getElementById('turn-badge');
+                const p1Ring = document.getElementById('player-active-circle');
+                const isUserTurn = (playState === "playing" && players[activePlayerIndex].id === "p1");
+                
+                if (isUserTurn) {
+                    turnBadge.className = "font-label-mono text-[10px] md:text-xs font-bold bg-primary text-on-primary px-3 py-0.5 rounded-full shadow-lg block animate-pulse";
+                    turnBadge.textContent = "YOUR TURN";
+                    p1Ring.className = "w-16 h-16 md:w-18 md:h-18 rounded-full border-4 border-primary player-active-ring bg-surface-container overflow-hidden z-10";
+                } else {
+                    turnBadge.className = "font-label-mono text-[10px] md:text-xs font-bold bg-surface-container-highest text-on-surface-variant px-3 py-0.5 rounded-full block";
+                    turnBadge.textContent = playState === "bidding" ? "BIDDING" : "WAITING";
+                    p1Ring.className = "w-16 h-16 md:w-18 md:h-18 rounded-full border-4 border-outline-variant bg-surface-container overflow-hidden z-10";
+                }
+            }
+        });
+    }
+
+    function updateUIScores() {
+        const sidebarList = document.getElementById('sidebar-scores-list');
+        sidebarList.innerHTML = '';
+        
+        players.forEach(p => {
+            const isMe = p.id === "p1";
+            const bidStr = playState === "bidding" ? "?" : p.bid;
+            const nameColor = isMe ? "text-on-surface font-bold" : "text-on-surface-variant";
+            const scoreColor = isMe ? "text-accent-gold" : "text-on-surface-variant/70";
+            
+            const div = document.createElement('div');
+            div.className = "flex justify-between text-sm py-0.5";
+            div.innerHTML = `
+                <span class="${nameColor} truncate max-w-[130px]">${p.name} ${isMe ? '(You)' : ''}</span>
+                <span class="font-label-mono text-xs"><span class="${scoreColor}">${p.score} pts</span> • <span class="text-primary font-bold">${bidStr}</span> / <span class="text-accent-gold font-bold">${p.won}</span></span>
+            `;
+            sidebarList.appendChild(div);
+        });
+    }
+
+    function updateUIHand() {
+        const handContainer = document.getElementById('cards-hand');
+        handContainer.innerHTML = '';
+        
+        const myHand = players[0].hand;
+        const totalCards = myHand.length;
+        
+        myHand.forEach((card, idx) => {
+            // Calculate rotational fan angles
+            const mid = (totalCards - 1) / 2;
+            const diff = idx - mid;
+            const angle = diff * 5; // degrees rotation
+            const offsetY = Math.abs(diff) * 2; // pixel offset down
+            
+            const isHearts = card.suit === "HEARTS";
+            const suitSymbolObj = SUITS.find(s => s.id === card.suit);
+            const colorClass = isHearts ? "text-accent-crimson" : "text-surface-dim";
+            
+            const cardDiv = document.createElement('div');
+            cardDiv.className = `w-20 h-28 md:w-26 md:h-36 bg-white rounded-xl border-2 border-surface-dim card-shadow transition-all duration-200 hover:-translate-y-10 hover:z-50 cursor-pointer flex flex-col p-1.5 md:p-2.5`;
+            cardDiv.style.transform = `rotate(${angle}deg) translateY(${offsetY}px)`;
+            cardDiv.innerHTML = `
+                <div class="flex flex-col items-start leading-none">
+                    <span class="${colorClass} font-black text-lg md:text-xl">${card.value}</span>
+                    <span class="material-symbols-outlined ${colorClass} text-sm md:text-base select-none" style="font-variation-settings: 'FILL' 1;">${suitSymbolObj.symbol}</span>
+                </div>
+                <span class="material-symbols-outlined ${colorClass} self-center my-auto text-3xl md:text-4xl select-none" style="font-variation-settings: 'FILL' 1;">${suitSymbolObj.symbol}</span>
+            `;
+            
+            // Attach card click handlers for players
+            cardDiv.onclick = () => {
+                playerPlayCard(idx);
+            };
+            
+            handContainer.appendChild(cardDiv);
+        });
+    }
+
+    // Timer Bar behaviors
+    function startTimer() {
+        stopTimer();
+        turnTimeLeft = 100;
+        
+        const timerBar = document.getElementById('timer-bar');
+        timerBar.style.width = '100%';
+        timerBar.className = 'h-full bg-accent-gold transition-all duration-100 ease-linear w-full';
+        
+        turnTimer = setInterval(() => {
+            if (turnTimeLeft > 0) {
+                turnTimeLeft -= 1; // 1% per 150ms = 15 seconds timer
+                timerBar.style.width = turnTimeLeft + '%';
+                if (turnTimeLeft < 30) {
+                    timerBar.classList.remove('bg-accent-gold');
+                    timerBar.classList.add('bg-accent-crimson');
+                }
+            } else {
+                stopTimer();
+                // Play random card for player automatically if they run out of time
+                autoPlayUserCard();
+            }
+        }, 150);
+    }
+
+    function stopTimer() {
+        if (turnTimer) {
+            clearInterval(turnTimer);
+            turnTimer = null;
+        }
+        const timerBar = document.getElementById('timer-bar');
+        if (timerBar) {
+            timerBar.style.width = '0%';
+        }
+    }
+
+    function autoPlayUserCard() {
+        if (playState !== "playing") return;
+        
+        // Find a random valid card
+        const myHand = players[0].hand;
+        let validIndices = [];
+        myHand.forEach((card, idx) => {
+            if (isPlayValid(players[0], card)) {
+                validIndices.push(idx);
+            }
+        });
+        
+        if (validIndices.length === 0) {
+            // Fallback to any card index if rules are broken (shouldn't happen)
+            validIndices = [...Array(myHand.length).keys()];
+        }
+        
+        const playIdx = validIndices[Math.floor(Math.random() * validIndices.length)];
+        playerPlayCard(playIdx);
+    }
+
+    // Toast popup
+    function showTemporaryToast(text) {
+        const toast = document.getElementById('table-toast');
+        toast.textContent = text;
+        toast.classList.remove('hidden');
+        setTimeout(() => {
+            toast.classList.add('hidden');
+        }, 1800);
+    }
+
+    function toggleRulesModal(show) {
+        sfx.playTick();
+        const modal = document.getElementById('rules-modal');
+        if (show) modal.classList.remove('hidden');
+        else modal.classList.add('hidden');
+    }
+
+
+    // ==================== CONFETTI EFFECT ENGINE ====================
+    let canvas, ctx, confettiActive = false;
+    let particles = [];
+    const colors = ['#F59E0B', '#3B82F6', '#EF4444', '#ffb95f', '#ffb3ad'];
+
+    function initConfetti() {
+        canvas = document.getElementById('particle-container');
+        ctx = canvas.getContext('2d');
+        resizeCanvas();
+        window.addEventListener('resize', resizeCanvas);
+    }
+
+    function resizeCanvas() {
+        canvas.width = canvas.parentElement.clientWidth;
+        canvas.height = canvas.parentElement.clientHeight;
+    }
+
+    function spawnParticle() {
+        return {
+            x: Math.random() * canvas.width,
+            y: -10 - Math.random() * 20,
+            size: 5 + Math.random() * 8,
+            color: colors[Math.floor(Math.random() * colors.length)],
+            speedY: 2 + Math.random() * 4,
+            speedX: -1.5 + Math.random() * 3,
+            rotation: Math.random() * 360,
+            rotationSpeed: -3 + Math.random() * 6
+        };
+    }
+
+    function startConfetti() {
+        if (!canvas) initConfetti();
+        confettiActive = true;
+        particles = [];
+        for (let i = 0; i < 70; i++) {
+            particles.push(spawnParticle());
+            // Randomize y to space them initially
+            particles[i].y = Math.random() * canvas.height;
+        }
+        animateConfetti();
+    }
+
+    function stopConfetti() {
+        confettiActive = false;
+    }
+
+    function animateConfetti() {
+        if (!confettiActive && particles.length === 0) return;
+        
+        ctx.clearRect(0, 0, canvas.width, canvas.height);
+        
+        // Update & Draw
+        for (let i = particles.length - 1; i >= 0; i--) {
+            let p = particles[i];
+            p.y += p.speedY;
+            p.x += p.speedX;
+            p.rotation += p.rotationSpeed;
+            
+            // Draw particle
+            ctx.save();
+            ctx.translate(p.x, p.y);
+            ctx.rotate(p.rotation * Math.PI / 180);
+            ctx.fillStyle = p.color;
+            ctx.fillRect(-p.size/2, -p.size/2, p.size, p.size);
+            ctx.restore();
+            
+            // Check boundary
+            if (p.y > canvas.height) {
+                if (confettiActive) {
+                    particles[i] = spawnParticle();
+                } else {
+                    particles.splice(i, 1);
+                }
+            }
+        }
+        
+        requestAnimationFrame(animateConfetti);
+    }
+
+    // Auto-setup defaults
+    document.getElementById('player-name-input').value = "Neon_Ghost";
+    document.getElementById('avatar-label').textContent = AVATARS[0].name;
+
+</script>
+</body>
+</html>
