@@ -179,6 +179,10 @@ export const Game: React.FC = () => {
   const N = game.players.length;
   const clientIdx = game.players.findIndex((p) => p.id === playerId);
 
+  const calculatedRadius = isMobile
+    ? Math.min(window.innerWidth * 0.32, 110)
+    : Math.max(125, Math.min(window.innerHeight * 0.23, window.innerWidth * 0.16, 210));
+
   const handleSendChat = (e: React.FormEvent) => {
     e.preventDefault();
     if (chatInput.trim()) {
@@ -269,17 +273,13 @@ export const Game: React.FC = () => {
               cardsPlayed={game.current_trick.cards_played}
               players={game.players}
               clientPlayerId={playerId || ''}
+              tableRadius={calculatedRadius}
             />
           )}
 
           {/* Seat Players Around Circular Perimeter */}
           {game.players.map((p, idx) => {
             const seat = (idx - clientIdx + N) % N;
-            
-            // Responsive polar seat layouts to prevent overlaps and scale with height and width
-            const calculatedRadius = isMobile
-              ? Math.min(window.innerWidth * 0.32, 110)
-              : Math.max(125, Math.min(window.innerHeight * 0.23, window.innerWidth * 0.16, 210));
             
             const angle = (Math.PI / 2) + (2 * Math.PI * seat / N);
             const x = Math.cos(angle) * calculatedRadius;

@@ -7,21 +7,38 @@ interface TrickAreaProps {
   cardsPlayed: Record<string, CardData>;
   players: PlayerData[];
   clientPlayerId: string;
+  tableRadius: number; // Added to calculate responsive dimensions
 }
 
 export const TrickArea: React.FC<TrickAreaProps> = ({
   cardsPlayed,
   players,
   clientPlayerId,
+  tableRadius,
 }) => {
   const N = players.length;
   const clientIdx = players.findIndex(p => p.id === clientPlayerId);
 
+  // Center indicator felt circle scale
+  const innerMarkerSize = Math.max(60, tableRadius * 0.45);
+
   return (
-    <div className="absolute w-48 h-48 md:w-56 md:h-56 rounded-full border border-white/5 bg-[#171719]/30 backdrop-blur-md flex items-center justify-center top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 z-20">
+    <div 
+      style={{
+        width: `${tableRadius * 1.05}px`,
+        height: `${tableRadius * 1.05}px`,
+      }}
+      className="absolute rounded-full border border-white/5 bg-[#171719]/35 backdrop-blur-md flex items-center justify-center top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 z-20 transition-all duration-300"
+    >
       
       {/* Visual felt marker / trump accent center indicator */}
-      <div className="absolute w-24 h-24 rounded-full border border-white/5 bg-[#0e0e0f]/50 pointer-events-none" />
+      <div 
+        style={{
+          width: `${innerMarkerSize}px`,
+          height: `${innerMarkerSize}px`,
+        }}
+        className="absolute rounded-full border border-white/5 bg-[#0e0e0f]/50 pointer-events-none" 
+      />
 
       <AnimatePresence>
         {Object.entries(cardsPlayed).map(([pid, card]) => {
@@ -31,11 +48,11 @@ export const TrickArea: React.FC<TrickAreaProps> = ({
           // Calculate seat relative to client
           const seat = (playerIdx - clientIdx + N) % N;
           
-          // Polar coordinates for played card fanning
-          const radius = window.innerWidth < 768 ? 48 : 64; // Inner radius
+          // Polar coordinates for played card fanning - fully proportional to tableRadius
+          const fanningRadius = tableRadius * 0.32;
           const angle = (Math.PI / 2) + (2 * Math.PI * seat / N);
-          const x = Math.cos(angle) * radius;
-          const y = Math.sin(angle) * radius;
+          const x = Math.cos(angle) * fanningRadius;
+          const y = Math.sin(angle) * fanningRadius;
           
           // Natural rotation layout angle
           const rotate = (seat / N) * 360 - 90;
