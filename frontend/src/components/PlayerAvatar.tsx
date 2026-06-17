@@ -11,7 +11,6 @@ interface PlayerAvatarProps {
   isHost?: boolean;
   onKick?: () => void;
   showKickButton?: boolean;
-  compact?: boolean; // Enable smaller avatar layouts for crowded tables
 }
 
 export const PlayerAvatar: React.FC<PlayerAvatarProps> = ({
@@ -23,7 +22,6 @@ export const PlayerAvatar: React.FC<PlayerAvatarProps> = ({
   ready = false,
   onKick,
   showKickButton = false,
-  compact = false,
 }) => {
   // Responsive SVG circular countdown properties
   const isMobileSize = typeof window !== 'undefined' ? window.innerWidth < 768 : false;
@@ -38,9 +36,6 @@ export const PlayerAvatar: React.FC<PlayerAvatarProps> = ({
 
   // Blue at start, crimson when under 35% time remaining
   const timerColor = timeLeft > 35 ? '#3B82F6' : '#EF4444';
-
-  const circleSizeClass = compact ? 'w-18 h-18' : 'w-24 h-24';
-  const imgSizeClass = compact ? 'w-14 h-14' : 'w-20 h-20';
 
   return (
     <div className={`
