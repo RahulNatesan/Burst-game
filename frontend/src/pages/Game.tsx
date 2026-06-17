@@ -117,24 +117,26 @@ export const Game: React.FC = () => {
   useEffect(() => {
     if (!roomState?.game_state || !playerId) return;
     const game = roomState.game_state;
-    const myPlayer = game.players.find(p => p.id === playerId);
+    const playersList = Array.isArray(game.players) ? game.players : [];
+    const myPlayer = playersList.find(p => p.id === playerId);
     if (myPlayer) {
       const prev = prevTricksWon.current[myPlayer.id] ?? 0;
       if (myPlayer.tricks_won > prev) {
         sfx.playWinTrick();
       }
-      game.players.forEach(p => {
+      playersList.forEach(p => {
         prevTricksWon.current[p.id] = p.tricks_won;
       });
     }
-  }, [roomState?.game_state?.tricks_played_in_round, playerId]);
+  }, [roomState?.game_state?.tricks_played_in_round, roomState?.game_state?.players, playerId]);
 
   // Sound Observers: Round End Score Outcome SFX + capture previous ranking
   useEffect(() => {
     if (!roomState?.game_state || !playerId) return;
     const game = roomState.game_state;
+    const playersList = Array.isArray(game.players) ? game.players : [];
     if (game.phase === 'ROUND_END' && prevPhase.current !== 'ROUND_END') {
-      const myPlayer = game.players.find(p => p.id === playerId);
+      const myPlayer = playersList.find(p => p.id === playerId);
       if (myPlayer) {
         const isHit = myPlayer.bid === myPlayer.tricks_won;
         if (isHit) {
@@ -146,8 +148,8 @@ export const Game: React.FC = () => {
     }
     // Capture ranking order whenever we're NOT in ROUND_END so it persists as "previous" when ROUND_END arrives
     if (game.phase !== 'ROUND_END' && game.phase !== 'GAME_OVER') {
-      const rankedIds = [...game.players]
-        .sort((a, b) => b.total_score - a.total_score)
+      const rankedIds = [...playersList]
+        .sort((a, b) => (b.total_score || 0) - (a.total_score || 0))
         .map(p => p.id);
       setPrevRanking(rankedIds);
     }
