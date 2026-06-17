@@ -41,6 +41,7 @@ export const socketService = {
         const { type, data } = payload;
 
         if (type === "ROOM_UPDATE") {
+          console.log("ROOM UPDATE RECEIVED", data);
           useGameStore.getState().setRoomState(data);
           useGameStore.getState().setRoomCode(data.code);
         } else if (type === "CHAT") {
