@@ -7,22 +7,22 @@ interface TrickAreaProps {
   cardsPlayed: Record<string, CardData>;
   players: PlayerData[];
   clientPlayerId: string;
-<<<<<<< HEAD
-  tableRadius: number; // Added to calculate responsive dimensions
-=======
   tableWidth?: number;
->>>>>>> 0c199d9 (Add production cors)
+=======
+  xRadius: number; // Added for horizontal elliptical fanning
+  yRadius: number; // Added for vertical elliptical fanning
+>>>>>>> 8d0340f (Shift layout left and increase avatar spread)
 }
 
 export const TrickArea: React.FC<TrickAreaProps> = ({
   cardsPlayed,
   players,
   clientPlayerId,
-<<<<<<< HEAD
-  tableRadius,
-=======
   tableWidth = 450,
->>>>>>> 0c199d9 (Add production cors)
+=======
+  xRadius,
+  yRadius,
+>>>>>>> 8d0340f (Shift layout left and increase avatar spread)
 }) => {
   const N = players.length;
   const clientIdx = players.findIndex(p => p.id === clientPlayerId);
@@ -33,32 +33,20 @@ export const TrickArea: React.FC<TrickAreaProps> = ({
   const radius = isMobile ? 42 : Math.max(70, Math.min(tableWidth * 0.16, 110));
 
   // Center indicator felt circle scale
-  const innerMarkerSize = Math.max(60, tableRadius * 0.45);
+  const innerMarkerSize = Math.max(60, yRadius * 0.45);
 
   return (
     <div 
-<<<<<<< HEAD
-      style={{
-        width: `${tableRadius * 1.05}px`,
-        height: `${tableRadius * 1.05}px`,
-      }}
-      className="absolute rounded-full border border-white/5 bg-[#171719]/10 flex items-center justify-center top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 z-20 transition-all duration-300"
-=======
       style={{ width: `${innerAreaSize}px`, height: `${innerAreaSize}px` }}
       className="absolute rounded-full border border-white/5 bg-[#171719]/30 backdrop-blur-md flex items-center justify-center top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 z-20 transition-all duration-300"
->>>>>>> 0c199d9 (Add production cors)
+=======
+      className="absolute flex items-center justify-center top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 z-20 transition-all duration-300 pointer-events-none"
+>>>>>>> 8d0340f (Shift layout left and increase avatar spread)
     >
       
       {/* Visual felt marker / trump accent center indicator */}
       <div 
-<<<<<<< HEAD
-        style={{
-          width: `${innerMarkerSize}px`,
-          height: `${innerMarkerSize}px`,
-        }}
-=======
         style={{ width: `${markerSize}px`, height: `${markerSize}px` }}
->>>>>>> 0c199d9 (Add production cors)
         className="absolute rounded-full border border-white/5 bg-[#0e0e0f]/50 pointer-events-none" 
       />
 
@@ -70,15 +58,15 @@ export const TrickArea: React.FC<TrickAreaProps> = ({
           // Calculate seat relative to client
           const seat = (playerIdx - clientIdx + N) % N;
           
-<<<<<<< HEAD
-          // Polar coordinates for played card fanning - fully proportional to tableRadius
-          const fanningRadius = tableRadius * 0.32;
-=======
           // Polar coordinates for played card fanning
->>>>>>> 0c199d9 (Add production cors)
+=======
+          // Polar coordinates for played card fanning - fully proportional to table dimensions
+          const fanningX = xRadius * 0.35;
+          const fanningY = yRadius * 0.35;
+>>>>>>> 8d0340f (Shift layout left and increase avatar spread)
           const angle = (Math.PI / 2) + (2 * Math.PI * seat / N);
-          const x = Math.cos(angle) * fanningRadius;
-          const y = Math.sin(angle) * fanningRadius;
+          const x = Math.cos(angle) * fanningX;
+          const y = Math.sin(angle) * fanningY;
           
           // Natural rotation layout angle
           const rotate = (seat / N) * 360 - 90;

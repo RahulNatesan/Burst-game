@@ -194,17 +194,14 @@ export const Game: React.FC = () => {
   const N = game.players.length;
   const clientIdx = game.players.findIndex((p) => p.id === playerId);
 
-  // Seating calculations: use an ellipse (oval) to spread players horizontally on widescreen displays
-  const xRadius = isMobile
-    ? Math.min(window.innerWidth * 0.32, 110)
-    : Math.max(140, Math.min(window.innerHeight * 0.28, window.innerWidth * 0.22, 260));
-
-  const yRadius = isMobile
-    ? Math.min(window.innerWidth * 0.32, 110)
-    : Math.max(110, Math.min(window.innerHeight * 0.18, window.innerWidth * 0.13, 160));
-
-  // The base reference table radius (used to size the central TrickArea relative to vertical space)
-  const calculatedRadius = yRadius;
+  // Seating coordinates are elliptical (oval) on desktop to stretch players out horizontally
+  const tableWidth = Math.min(window.innerWidth, window.innerHeight);
+  const xRadius = isMobile 
+    ? Math.max(100, Math.min(tableWidth * 0.38, 130))
+    : Math.max(260, Math.min(tableWidth * 0.48, 480));
+  const yRadius = isMobile 
+    ? Math.max(100, Math.min(tableWidth * 0.38, 130))
+    : Math.max(140, Math.min((tableWidth / 1.5) * 0.45, 180));
 
   const handleSendChat = (e: React.FormEvent) => {
     e.preventDefault();
@@ -285,8 +282,7 @@ export const Game: React.FC = () => {
       </header>
 
       {/* Main Table Content */}
-<<<<<<< HEAD
-      <main className={`flex-1 w-full flex flex-col md:flex-row relative items-center justify-center p-4 transition-all duration-500 ${isInspectionActive ? 'z-10 pointer-events-none opacity-20' : 'z-10'}`}>
+      <main className={`flex-1 w-full flex flex-col md:flex-row relative items-center md:items-start justify-center p-4 md:pt-[8vh] md:pr-[320px] xl:pr-[400px] transition-all duration-500 ${isInspectionActive ? 'z-10 pointer-events-none opacity-20' : 'z-10'}`}>
         
         {/* Seated Table Container */}
         <div className="relative w-full max-w-[42vh] md:max-w-[48vh] lg:max-w-[50vh] aspect-square flex items-center justify-center border border-white/5 rounded-full bg-charcoal/10 shadow-[inset_0_0_60px_rgba(0,0,0,0.8)] z-10">
@@ -297,7 +293,8 @@ export const Game: React.FC = () => {
               cardsPlayed={game.current_trick.cards_played}
               players={game.players}
               clientPlayerId={playerId || ''}
-              tableRadius={calculatedRadius}
+              xRadius={xRadius}
+              yRadius={yRadius}
             />
           )}
 
@@ -416,84 +413,50 @@ export const Game: React.FC = () => {
 >>>>>>> 0c199d9 (Add production cors)
         </div>
 
-        {/* Desktop Right Sidebar (Leaderboard + Chat) */}
-        {!isMobile && (
-          <aside className={`w-72 lg:w-80 h-[85%] max-h-[75vh] flex flex-col gap-4 shrink-0 z-20 transition-all duration-500 ${
-            isInspectionActive ? 'blur-[8px] opacity-20 pointer-events-none' : ''
-          }`}>
-            <div className="shrink-0">
-              <Scoreboard players={game.players} activePlayerId={game.active_player_id} />
-            </div>
-            
-            {/* Cyber Chat Log */}
-            <div className="flex-1 min-h-[180px] h-auto glass-panel rounded-2xl p-4 border border-white/5 flex flex-col">
-              <h4 className="text-xs md:text-sm uppercase tracking-widest text-on-surface-variant font-mono font-bold mb-2 flex items-center gap-2 border-b border-outline-variant/30 pb-2 shrink-0">
-                <span className="material-symbols-outlined text-sm">chat</span>
-                Link Communications
-              </h4>
-              <div className="flex-1 overflow-y-auto space-y-2 pr-1 mb-2 font-mono text-xs md:text-sm text-zinc-300">
-                {chatMessages.length === 0 && (
-                  <div className="text-zinc-650 italic">No communications received.</div>
-                )}
-                {chatMessages.map((msg, idx) => (
-                  <div key={idx} className="break-all leading-relaxed">
-                    <span className="text-electricBlue font-bold">{msg.sender}: </span>
-                    <span>{msg.message}</span>
-                  </div>
-                ))}
-                <div ref={chatEndRef} />
-              </div>
-              <form onSubmit={handleSendChat} className="flex gap-2 shrink-0">
-                <input
-                  type="text"
-                  placeholder="Broadcast message..."
-                  value={chatInput}
-                  onChange={(e) => setChatInput(e.target.value.slice(0, 35))}
-                  className="flex-1 bg-[#1b1b1d] border border-outline-variant/30 text-white rounded-lg px-3 py-2 text-xs md:text-sm focus:outline-none focus:border-electricBlue"
-                />
-                <button type="submit" className="bg-electricBlue hover:bg-[#1d4ed8] text-white px-4 rounded-lg text-xs md:text-sm font-bold uppercase tracking-wider font-mono cursor-pointer transition-all active:scale-95">
-                  Send
-                </button>
-              </form>
-            </div>
-          </aside>
-        )}
       </main>
 
-      {/* Hand Cards Panel at bottom */}
-<<<<<<< HEAD
-      {(() => {
-        const cardSize = isMobile ? 'sm' : window.innerHeight < 750 ? 'md' : 'lg';
-        const footerHeightClass = cardSize === 'sm'
-          ? 'h-28'
-          : cardSize === 'md'
-            ? 'h-38 md:h-42'
-            : 'h-52 md:h-60';
-
-        return (
-          <footer className={`w-full ${footerHeightClass} z-35 relative shrink-0 flex flex-col items-center justify-end bg-gradient-to-t from-[#0e0e0f] to-transparent pb-4`}>
-            {/* Status prompt alert */}
-            <div className="absolute top-0 transform -translate-y-8 font-mono text-[10px] md:text-xs text-on-surface-variant bg-[#131315]/85 border border-outline-variant/20 rounded-full px-4 py-1 animate-pulse z-30">
-              {game.phase === 'BIDDING' && biddingDelayTimeLeft > 0 && "Inspect your cards. Bidding countdown active."}
-              {isMyBiddingTurn && "Place your trick forecast bid."}
-              {isMyPlayTurn && "Your turn. Play a card following lead suit if possible."}
-              {!isMyBiddingTurn && !isMyPlayTurn && game.phase === 'BIDDING' && biddingDelayTimeLeft <= 0 && activePlayer && `Waiting for ${activePlayer.name} to bid...`}
-              {!isMyBiddingTurn && !isMyPlayTurn && game.phase === 'PLAYING' && activePlayer && `Waiting for ${activePlayer.name}...`}
+      {/* Desktop Sidebars (Leaderboard + Chat) */}
+      {!isMobile && (
+        <aside className="w-80 xl:w-96 h-[80%] flex flex-col gap-4 absolute right-6 top-[10%] z-50">
+          <div className="flex-1">
+            <Scoreboard players={game.players} activePlayerId={game.active_player_id} />
+          </div>
+          
+          {/* Cyber Chat Log */}
+          <div className="h-64 glass-panel rounded-2xl p-4 border border-white/5 flex flex-col">
+            <h4 className="text-xs md:text-sm uppercase tracking-widest text-on-surface-variant font-mono font-bold mb-2 flex items-center gap-2 border-b border-outline-variant/30 pb-2 shrink-0">
+              <span className="material-symbols-outlined text-sm">chat</span>
+              Link Communications
+            </h4>
+            <div className="flex-1 overflow-y-auto space-y-2 pr-1 mb-2 font-mono text-xs md:text-sm text-zinc-300">
+              {chatMessages.length === 0 && (
+                <div className="text-zinc-650 italic">No communications received.</div>
+              )}
+              {chatMessages.map((msg, idx) => (
+                <div key={idx} className="break-all leading-relaxed">
+                  <span className="text-electricBlue font-bold">{msg.sender}: </span>
+                  <span>{msg.message}</span>
+                </div>
+              ))}
+              <div ref={chatEndRef} />
             </div>
-
-            {myPlayer && (
-              <Hand
-                hand={myPlayer.hand}
-                validPlays={isMyPlayTurn && game.current_trick ? getValidPlays(myPlayer.hand, game.current_trick.lead_suit) : []}
-                active={isMyPlayTurn}
-                onPlayCard={handlePlayCard}
-                cardSize={cardSize}
+            <form onSubmit={handleSendChat} className="flex gap-2 shrink-0">
+              <input
+                type="text"
+                placeholder="Broadcast message..."
+                value={chatInput}
+                onChange={(e) => setChatInput(e.target.value.slice(0, 35))}
+                className="flex-1 bg-[#1b1b1d] border border-outline-variant/30 text-white rounded-lg px-3 py-2 text-xs md:text-sm focus:outline-none focus:border-electricBlue"
               />
-            )}
-          </footer>
-        );
-      })()}
-=======
+              <button type="submit" className="bg-electricBlue hover:bg-[#1d4ed8] text-white px-4 rounded-lg text-xs md:text-sm font-bold uppercase tracking-wider font-mono cursor-pointer transition-all active:scale-95">
+                Send
+              </button>
+            </form>
+          </div>
+        </aside>
+      )}
+
+      {/* Hand Cards Panel at bottom */}
       <footer className={`w-full z-30 relative shrink-0 flex flex-col items-center justify-end bg-gradient-to-t from-[#0e0e0f] to-transparent pb-4 transition-all duration-300 ${
         showHandAtBottom ? 'h-52 md:h-60' : 'h-16'
       }`}>
@@ -518,19 +481,20 @@ export const Game: React.FC = () => {
           />
         )}
       </footer>
->>>>>>> 0c199d9 (Add production cors)
 
       {/* Overlays / Modals */}
       <AnimatePresence>
         {isMyBiddingTurn && game.current_bidding && (
-          <div className="fixed inset-0 bg-black/30 flex items-center justify-center z-40 p-4">
-            <BidPanel
-              totalTricks={game.current_bidding.total_tricks}
-              restrictedBid={game.current_bidding.restricted_bid}
-              validBids={game.current_bidding.valid_bids}
-              currentBidSum={Object.values(game.current_bidding.bids).reduce((sum, b) => sum + b, 0)}
-              onSubmit={handleSubmitBid}
-            />
+          <div className="fixed inset-0 bg-black/20 backdrop-blur-md flex items-start justify-center pt-20 md:pt-32 md:pr-[320px] xl:pr-[400px] z-40 p-4 pointer-events-none">
+            <div className="pointer-events-auto w-full max-w-sm">
+              <BidPanel
+                totalTricks={game.current_bidding.total_tricks}
+                restrictedBid={game.current_bidding.restricted_bid}
+                validBids={game.current_bidding.valid_bids}
+                currentBidSum={Object.values(game.current_bidding.bids).reduce((sum, b) => sum + b, 0)}
+                onSubmit={handleSubmitBid}
+              />
+            </div>
           </div>
         )}
 
@@ -542,7 +506,7 @@ export const Game: React.FC = () => {
               animate={{ opacity: 1 }}
               exit={{ opacity: 0 }}
               transition={{ duration: 0.3 }}
-              className="fixed inset-0 bg-[#070708]/80 backdrop-blur-sm z-30 pointer-events-none"
+              className="fixed inset-0 bg-black/20 backdrop-blur-md z-30 pointer-events-none"
             />
             {/* Centered animated Card Inspection popup */}
             <div className="fixed inset-0 flex flex-col items-center justify-center z-40 pointer-events-none select-none p-4 bg-transparent">
