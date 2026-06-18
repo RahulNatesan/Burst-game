@@ -90,10 +90,8 @@ export const socketService = {
         switch (type) {
           case "ROOM_UPDATE":
             console.log(
-              "ROOM UPDATE RECEIVED",
-              data.phase,
-              data.active_player_id,
-              data.players
+              "FULL ROOM UPDATE",
+              JSON.stringify(data, null, 2)
             );
             useGameStore.getState().setRoomState(data);
             useGameStore.getState().setRoomCode(data.code);
