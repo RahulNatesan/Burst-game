@@ -85,8 +85,6 @@ class Room:
                 human_players = [p for p in self.players if not p.is_bot]
                 if human_players:
                     self.host_id = human_players[0].id
-                elif self.players:
-                    self.host_id = self.players[0].id
                 else:
                     self.host_id = None
 
