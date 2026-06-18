@@ -76,21 +76,46 @@ export const socketService = {
     };
 
     socket.onmessage = (event) => {
+      let payload: any;
       try {
-        const payload = JSON.parse(event.data);
-        const { type, data } = payload;
+        payload = JSON.parse(event.data);
+      } catch (err) {
+        console.error("Failed to parse WebSocket message:", err);
+        return;
+      }
 
-        if (type === "ROOM_UPDATE") {
-          console.log("ROOM UPDATE RECEIVED", data);
-          useGameStore.getState().setRoomState(data);
-          useGameStore.getState().setRoomCode(data.code);
-        } else if (type === "CHAT") {
-          useGameStore.getState().addChatMessage(data.sender, data.message);
-        } else if (type === "ERROR") {
-          console.error("WebSocket server error payload:", data.message || payload.message);
+      const { type, data } = payload;
+
+      try {
+        switch (type) {
+          case "ROOM_UPDATE":
+            console.log(
+              "ROOM UPDATE RECEIVED",
+              data.phase,
+              data.active_player_id,
+              data.players
+            );
+            useGameStore.getState().setRoomState(data);
+            useGameStore.getState().setRoomCode(data.code);
+            console.log(
+              "STORE UPDATED",
+              useGameStore.getState().roomState
+            );
+            break;
+
+          case "CHAT":
+            useGameStore.getState().addChatMessage(data.sender, data.message);
+            break;
+
+          case "ERROR":
+            console.error(
+              "WebSocket server error payload:",
+              data?.message ?? payload?.message ?? payload
+            );
+            break;
         }
       } catch (err) {
-        console.error("Error parsing WebSocket message:", err);
+        console.error("Failed handling WS message", payload, err);
       }
     };
   },
