@@ -24,14 +24,19 @@ class ConnectionManager:
         self.active_connections[room_code][player_id] = websocket
         logger.info(f"WebSocket connected: player {player_id} in room {room_code}")
 
-    def disconnect(self, room_code: str, player_id: str) -> None:
+    def disconnect(self, room_code: str, player_id: str, websocket: WebSocket) -> None:
         """De-register player socket from room on disconnect."""
         if room_code in self.active_connections:
             if player_id in self.active_connections[room_code]:
-                del self.active_connections[room_code][player_id]
-                logger.info(f"WebSocket disconnected: player {player_id} from room {room_code}")
+                if self.active_connections[room_code][player_id] == websocket:
+                    del self.active_connections[room_code][player_id]
+                    logger.info(f"WebSocket disconnected: player {player_id} from room {room_code}")
             if not self.active_connections[room_code]:
                 del self.active_connections[room_code]
+
+    def is_player_connected(self, room_code: str, player_id: str) -> bool:
+        """Check if a player has an active WebSocket connection."""
+        return room_code in self.active_connections and player_id in self.active_connections[room_code]
 
     async def send_personal_message(self, message: Dict[str, Any], websocket: WebSocket) -> None:
         """Send a JSON payload directly to a specific socket."""

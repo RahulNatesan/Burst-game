@@ -181,11 +181,14 @@ async def websocket_endpoint(websocket: WebSocket, room_code: str, token: str = 
                     await manager.broadcast_chat_message(room_code, username, message)
 
     except WebSocketDisconnect:
-        manager.disconnect(room_code, player_id)
-        # Fetch fresh state
-        state = redis_service.get_room_state(room_code)
-        if state:
-            room = Room.from_save_dict(state)
-            room.remove_player(player_id)
-            redis_service.save_room_state(room_code, room.to_save_dict())
-            await manager.broadcast_room_state(room)
+        manager.disconnect(room_code, player_id, websocket)
+        
+        # ONLY update room state and broadcast if the player actually doesn't have an active connection anymore
+        if not manager.is_player_connected(room_code, player_id):
+            # Fetch fresh state
+            state = redis_service.get_room_state(room_code)
+            if state:
+                room = Room.from_save_dict(state)
+                room.remove_player(player_id)
+                redis_service.save_room_state(room_code, room.to_save_dict())
+                await manager.broadcast_room_state(room)
